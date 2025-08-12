@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PCAF Backend API – Transform Your Carbon Accounting</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/phosphor-icons@1.2.1"></script>
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --bg-alt: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-light: #dbeafe;
+      --accent: #10b981;
+      --accent-light: #d1fae5;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0,0,0,.04);
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    /* Dark-mode overrides */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --bg-alt: #1e293b;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border: #334155;
+        --shadow: 0 4px 12px rgba(0,0,0,.2);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      scroll-behavior: smooth;
+    }
+
+    /* Layout helpers */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 0 0 .6em;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem;   }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem;}
+
+    p, li, td {
+      color: var(--text-muted);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 7rem 0;
+      background: var(--primary-light);
+    }
+    @media (prefers-color-scheme: dark) {
+      .hero { background: #0f172a; }
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: .5em;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: .9rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: transform .15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* Code blocks */
+    pre {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: .9rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    th, td {
+      padding: .75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Progress bar */
+    .progress {
+      background: var(--border);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: .5rem 0 1rem;
+    }
+
+    .progress-bar {
+      width: 70%;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    /* Icons */
+    i.ph {
+      margin-right: .5rem;
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
+
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+      margin-left: .5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.9rem;
+      top: .4rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-alt);
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.25rem; }
+      .hero { padding: 4rem 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Transform Your Carbon&nbsp;Accounting</h1>
+      <p>Enterprise-grade PCAF compliance for motor-vehicle loan portfolios – delivered through a single RESTful&nbsp;API.</p>
+      <a class="btn" href="#demo">Book a Live Demo</a>
+    </div>
+  </header>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section id="summary">
+    <div class="container">
+      <h2><i class="ph ph-lightbulb"></i>Executive Summary</h2>
+      <p>
+        The <strong>PCAF Backend API</strong> is a cutting-edge financial-emissions calculation platform that enables financial institutions to
+        accurately measure, track, and report carbon emissions from their motor-vehicle loan portfolios in full compliance with
+        the Partnership for Carbon Accounting Financials (PCAF) standards.
+      </p>
+    </div>
+  </section>
+
+  <!-- VALUE PROPOSITION -->
+  <section id="value" style="background: var(--bg-alt);">
+    <div class="container">
+      <h2><i class="ph ph-chart-bar"></i>Business Value Proposition</h2>
+      <div class="cards">
+        <div class="card">
+          <h4><i class="ph ph-shield-check"></i>Regulatory Compliance</h4>
+          <p>Meet PCAF Section 5.6 requirements out-of-the-box.</p>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-clock"></i>Operational Efficiency</h4>
+          <p>Reduce manual carbon accounting time by <strong>95 %</strong>.</p>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-lightning"></i>Real-Time Analytics</h4>
+          <p>Live portfolio emissions & data-quality scoring.</p>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-piggy-bank"></i>Cost Savings</h4>
+          <p><strong>540 % ROI</strong> vs. traditional manual processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <div class="container">
+      <h2><i class="ph ph-circuitry"></i>Solution Architecture</h2>
+      <pre>
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Client Apps   │    │   API Gateway   │    │  Load Balancer  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+┌─────────────────────────────────────────────────────────────────┐
+│                    PCAF Backend API                             │
+├─────────────────┬─────────────────┬─────────────────────────────┤
+│  Authentication │   Calculation   │      Data Management        │
+│     & Security  │     Engine      │        & Validation         │
+└─────────────────┴─────────────────┴─────────────────────────────┘
+         │                       │                       │
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│    MongoDB      │    │     Redis       │    │  External APIs  │
+│   (Database)    │    │   (Caching)     │    │ (LMS, Emissions)│
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+      </pre>
+      <p>Built on <strong>Node.js + TypeScript</strong>, <strong>MongoDB</strong>, <strong>Redis</strong>, and bank-grade security.</p>
+    </div>
+  </section>
+
+  <!-- KEY CAPABILITIES -->
+  <section id="capabilities" style="background: var(--bg-alt);">
+    <div class="container">
+      <h2><i class="ph ph-rocket"></i>Key Capabilities & Features</h2>
+      <div class="cards">
+        <div class="card">
+          <h4><i class="ph ph-calculator"></i>PCAF Compliance Engine</h4>
+          <ul>
+            <li>Section 5.6 methodology</li>
+            <li>Attribution factors</li>
+            <li>Data quality scoring (1-5)</li>
+            <li>Multiple calculation options (1a-3b)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-chart-line"></i>Real-Time Analytics</h4>
+          <ul>
+            <li>Live portfolio aggregation</li>
+            <li>Scope 1/2/3 separation</li>
+            <li>Intensity ratios</li>
+            <li>Historical trends</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-stack"></i>Advanced Loan Management</h4>
+          <ul>
+            <li>Automated amortization</li>
+            <li>Lifecycle events</li>
+            <li>Bulk processing</li>
+            <li>LMS integration</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><i class="ph ph-lock-key"></i>Enterprise Security</h4>
+          <ul>
+            <li>JWT + RBAC</li>
+            <li>TLS 1.3</li>
+            <li>Encryption at rest</li>
+            <li>Audit logging</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="container">
+      <h2><i class="ph ph-map-trifold"></i>Implementation Roadmap & Current Status</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Foundation</td>
+            <td>Core infrastructure & security</td>
+            <td><span style="color: var(--accent);">✅ Completed</span></td>
+          </tr>
+          <tr>
+            <td>2. PCAF Engine</td>
+            <td>Carbon calculation core</td>
+            <td><span style="color: var(--accent);">✅ Completed</span></td>
+          </tr>
+          <tr>
+            <td>3. Analytics</td>
+            <td>Portfolio BI & reporting</td>
+            <td><span style="color: var(--accent);">✅ Completed</span></td>
+          </tr>
+          <tr>
+            <td>4. Advanced Features</td>
+            <td>Lifecycle events & optimization</td>
+            <td>
+              <div class="progress"><div class="progress-bar"></div></div>
+              70 % – In Progress
+            </td>
+          </tr>
+          <tr>
+            <td>5. Production Ready</td>
+            <td>Monitoring, CI/CD, containers</td>
+            <td>Planned</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section id="roi" style="background: var(--bg-alt);">
+    <div class="container">
+      <h2><i class="ph ph-coins"></i>Business Impact & ROI</h2>
+      <div class="cards">
+        <div class="card">
+          <h4>Traditional Manual</h4>
+          <ul>
+            <li>40 h / month analyst</li>
+            <li>$80 / h loaded cost</li>
+            <li>$3,200 / month / portfolio</li>
+            <li>High error rate</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>PCAF Backend API</h4>
+          <ul>
+            <li>Automated processing</li>
+            <li>$500 / month operational</li>
+            <li>99.9 % accuracy</li>
+            <li>Full compliance</li>
+          </ul>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:1.5rem; font-weight:600; color: var(--accent);">
+        ROI: 540 % cost savings + risk elimination
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="container">
+      <h2><i class="ph ph-calendar-check"></i>Implementation Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Phase 1 – Pilot Deployment (4-6 weeks)</h4>
+          <p>Deploy existing modules, integrate with LMS, process ≤ 10 k loans.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 2 – Full Production (8-12 weeks)</h4>
+          <p>Add remaining options, lifecycle events, monitoring, scale to full volume.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Phase 3 – Optimization (ongoing)</h4>
+          <p>Performance tuning, custom features, additional integrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="demo" style="background: var(--accent-light);">
+    <div class="container" style="text-align:center;">
+      <h2><i class="ph ph-handshake"></i>Ready to Transform Your Carbon Accounting?</h2>
+      <p>
+        <strong>30-day risk-free pilot</strong> with your actual loan data.<br/>
+        Dedicated technical support. No long-term commitment.
+      </p>
+      <a class="btn" href="mailto:sales@pcaf-api.com?subject=Book a Demo">sales@pcaf-api.com</a>
+      <p style="margin-top:1.5rem;">
+        <a href="https://calendly.com/pcaf-demo">Schedule a 30-min live demo →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>
+        <strong>PCAF Backend API</strong><br/>
+        <a href="mailto:support@pcaf-api.com">support@pcaf-api.com</a> |
+        <a href="https://docs.pcaf-api.com">Documentation</a> |
+        <a href="https://github.com/pcaf-backend-api">GitHub</a>
+      </p>
+      <p style="font-size:.875rem; color: var(--text-muted);">
+        “Leading the future of sustainable finance through automated carbon accounting.”
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
