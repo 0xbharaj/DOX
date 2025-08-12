@@ -1,470 +1,1569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PCAF Backend API – Transform Your Carbon Accounting</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCAF Backend API - Technical Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --text-light: #ecf0f1;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/phosphor-icons@1.2.1"></script>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
 
-  <style>
-    :root {
-      --bg: #f7f9fc;
-      --bg-alt: #ffffff;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --primary: #3b82f6;
-      --primary-light: #dbeafe;
-      --accent: #10b981;
-      --accent-light: #d1fae5;
-      --border: #e2e8f0;
-      --radius: 12px;
-      --shadow: 0 4px 12px rgba(0,0,0,.04);
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    /* Dark-mode overrides */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --bg-alt: #1e293b;
-        --text: #f1f5f9;
-        --text-muted: #94a3b8;
-        --border: #334155;
-        --shadow: 0 4px 12px rgba(0,0,0,.2);
-      }
-    }
+        /* Header Styles */
+        .header {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
 
-    body {
-      margin: 0;
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      scroll-behavior: smooth;
-    }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
 
-    /* Layout helpers */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.2rem;
-    }
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    section {
-      padding: 5rem 0;
-    }
+        .header .subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
 
-    h1, h2, h3, h4 {
-      font-weight: 600;
-      line-height: 1.25;
-      margin: 0 0 .6em;
-    }
-
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem;   }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.25rem;}
-
-    p, li, td {
-      color: var(--text-muted);
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: 7rem 0;
-      background: var(--primary-light);
-    }
-    @media (prefers-color-scheme: dark) {
-      .hero { background: #0f172a; }
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: .5em;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 640px;
-      margin: 0 auto 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: .9rem 2rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: transform .15s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      text-decoration: none;
-    }
-
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--bg-alt);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-    }
-
-    /* Code blocks */
-    pre {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      overflow-x: auto;
-      font-family: var(--font-mono);
-      font-size: .9rem;
-    }
-
-    /* Tables */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-    }
-
-    th, td {
-      padding: .75rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* Progress bar */
-    .progress {
-      background: var(--border);
-      height: 8px;
-      border-radius: 4px;
-      overflow: hidden;
-      margin: .5rem 0 1rem;
-    }
-
-    .progress-bar {
-      width: 70%;
-      height: 100%;
-      background: var(--accent);
-    }
-
-    /* Icons */
-    i.ph {
-      margin-right: .5rem;
-      font-size: 1.2em;
-      vertical-align: middle;
-    }
-
-    /* Timeline */
-    .timeline {
-      border-left: 2px solid var(--border);
-      padding-left: 1.5rem;
-      margin-left: .5rem;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2rem;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -1.9rem;
-      top: .4rem;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--bg-alt);
-      padding: 3rem 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 { font-size: 2.25rem; }
-      .hero { padding: 4rem 0; }
-    }
-  </style>
+        .header .version-badge {
+            display: inline-block;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
+<body>  
+  <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>PCAF Backend API</h1>
+                <p class="subtitle">Technical Documentation & Architecture Guide</p>
+                <div class="version-badge">Version 1.0.0 • Enterprise Grade</div>
+            </div>
+        </div>
+    </header>
 
-<body>
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <h1>Transform Your Carbon&nbsp;Accounting</h1>
-      <p>Enterprise-grade PCAF compliance for motor-vehicle loan portfolios – delivered through a single RESTful&nbsp;API.</p>
-      <a class="btn" href="#demo">Book a Live Demo</a>
-    </div>
-  </header>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-links">
+                    <a href="#overview" class="nav-link active">Overview</a>
+                    <a href="#architecture" class="nav-link">Architecture</a>
+                    <a href="#structure" class="nav-link">Structure</a>
+                    <a href="#models" class="nav-link">Data Models</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#pcaf" class="nav-link">PCAF Engine</a>
+                    <a href="#api" class="nav-link">API Routes</a>
+                    <a href="#deployment" class="nav-link">Deployment</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <!-- EXECUTIVE SUMMARY -->
-  <section id="summary">
-    <div class="container">
-      <h2><i class="ph ph-lightbulb"></i>Executive Summary</h2>
-      <p>
-        The <strong>PCAF Backend API</strong> is a cutting-edge financial-emissions calculation platform that enables financial institutions to
-        accurately measure, track, and report carbon emissions from their motor-vehicle loan portfolios in full compliance with
-        the Partnership for Carbon Accounting Financials (PCAF) standards.
-      </p>
-    </div>
-  </section>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- System Overview Section -->
+            <section id="overview" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">System Architecture Overview</h2>
+                    <p class="section-subtitle">Enterprise-grade PCAF compliance system built with modern Node.js architecture</p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div class="card feature-card">
+                        <div class="card-icon">🏗️</div>
+                        <h3>Layered Architecture</h3>
+                        <p>Clean separation of concerns with API, Service, Data Access, and Database layers for maximum maintainability and scalability.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">🔒</div>
+                        <h3>Security First</h3>
+                        <p>Multiple security layers including JWT authentication, rate limiting, input validation, and comprehensive audit logging.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">📊</div>
+                        <h3>PCAF Compliant</h3>
+                        <p>Full implementation of PCAF Section 5.6 methodology with all six calculation options and data quality assessment.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>High Performance</h3>
+                        <p>Optimized for scale with Redis caching, database indexing, and horizontal scaling capabilities.</p>
+                    </div>
+                </div>
 
-  <!-- VALUE PROPOSITION -->
-  <section id="value" style="background: var(--bg-alt);">
-    <div class="container">
-      <h2><i class="ph ph-chart-bar"></i>Business Value Proposition</h2>
-      <div class="cards">
-        <div class="card">
-          <h4><i class="ph ph-shield-check"></i>Regulatory Compliance</h4>
-          <p>Meet PCAF Section 5.6 requirements out-of-the-box.</p>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-clock"></i>Operational Efficiency</h4>
-          <p>Reduce manual carbon accounting time by <strong>95 %</strong>.</p>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-lightning"></i>Real-Time Analytics</h4>
-          <p>Live portfolio emissions & data-quality scoring.</p>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-piggy-bank"></i>Cost Savings</h4>
-          <p><strong>540 % ROI</strong> vs. traditional manual processes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+                <div class="architecture-diagram">
+                    <h3>System Architecture Flow</h3>
+                    <div class="diagram-container">
+                        <div class="layer">
+                            <div class="layer-title">Client Applications</div>
+                            <div class="layer-subtitle">Frontend, Mobile, External APIs</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="layer">
+                            <div class="layer-title">API Gateway Layer</div>
+                            <div class="layer-subtitle">Express.js Routes, Middleware, Validation</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="layer">
+                            <div class="layer-title">Service Layer</div>
+                            <div class="layer-subtitle">Business Logic, PCAF Calculations, Data Processing</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="layer">
+                            <div class="layer-title">Data Access Layer</div>
+                            <div class="layer-subtitle">Mongoose ODM, Database Operations</div>
+                        </div>
+                        <div class="arrow">↓</div>
+                        <div class="layer">
+                            <div class="layer-title">Database Layer</div>
+                            <div class="layer-subtitle">MongoDB Atlas</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  <!-- ARCHITECTURE -->
-  <section id="architecture">
-    <div class="container">
-      <h2><i class="ph ph-circuitry"></i>Solution Architecture</h2>
-      <pre>
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Client Apps   │    │   API Gateway   │    │  Load Balancer  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-┌─────────────────────────────────────────────────────────────────┐
-│                    PCAF Backend API                             │
-├─────────────────┬─────────────────┬─────────────────────────────┤
-│  Authentication │   Calculation   │      Data Management        │
-│     & Security  │     Engine      │        & Validation         │
-└─────────────────┴─────────────────┴─────────────────────────────┘
-         │                       │                       │
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│    MongoDB      │    │     Redis       │    │  External APIs  │
-│   (Database)    │    │   (Caching)     │    │ (LMS, Emissions)│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-      </pre>
-      <p>Built on <strong>Node.js + TypeScript</strong>, <strong>MongoDB</strong>, <strong>Redis</strong>, and bank-grade security.</p>
-    </div>
-  </section>
+            <!-- Project Structure Section -->
+            <section id="structure" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Project Structure</h2>
+                    <p class="section-subtitle">Organized codebase following industry best practices</p>
+                </div>
+                
+                <div class="code-block-container">
+                    <pre><code class="language-bash">backend/
+├── src/
+│   ├── app.ts                 # Main application setup
+│   ├── server.ts              # Server startup and configuration
+│   ├── types.ts               # Global type definitions
+│   │
+│   ├── config/                # Configuration management
+│   │   ├── database.ts        # MongoDB connection setup
+│   │   ├── environment.ts     # Environment variables
+│   │   └── logger.ts          # Winston logging configuration
+│   │
+│   ├── middleware/            # Express middleware
+│   │   ├── auth.ts            # JWT authentication
+│   │   ├── errorHandler.ts    # Global error handling
+│   │   ├── rateLimiter.ts     # Rate limiting
+│   │   ├── requestLogger.ts   # Request/response logging
+│   │   ├── security.ts        # Security headers & validation
+│   │   └── validation.ts      # Input validation
+│   │
+│   ├── models/                # Mongoose data models
+│   │   ├── LoanPortfolioItem.ts    # Main loan data model
+│   │   ├── AmortizationSchedule.ts # Payment schedules
+│   │   ├── AttributionHistory.ts   # Historical tracking
+│   │   ├── EmissionFactor.ts       # Emission factors
+│   │   └── User.ts                 # User management
+│   │
+│   ├── routes/                # API route definitions
+│   │   ├── loans.ts           # Loan management endpoints
+│   │   ├── portfolio.ts       # Portfolio analytics
+│   │   ├── reports.ts         # Compliance reporting
+│   │   └── integrations.ts    # External system APIs
+│   │
+│   └── services/              # Business logic layer
+│       ├── pcafCalculationService.ts      # Core PCAF calculations
+│       ├── dataQualityService.ts          # Data validation & quality
+│       ├── amortizationService.ts         # Loan amortization
+│       └── portfolioAnalyticsService.ts   # Portfolio aggregation</code></pre>
+                </div>
+            </section></header>  
+          <!-- Data Models Section -->
+            <section id="models" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Data Models & Database Schema</h2>
+                    <p class="section-subtitle">Comprehensive data modeling for loan portfolio management</p>
+                </div>
+                
+                <div class="model-showcase">
+                    <div class="model-card">
+                        <h3>LoanPortfolioItem Model</h3>
+                        <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
+                        
+                        <div class="code-block-container">
+                            <pre><code class="language-typescript">interface LoanPortfolioItem extends Document {
+  // Loan Information
+  loan_id: string;                    // Unique identifier
+  borrower_name: string;              // Borrower information
+  loan_amount: number;                // Original loan amount
+  outstanding_balance: number;        // Current balance
+  interest_rate: number;              // Annual interest rate
+  term_months: number;                // Loan term
+  origination_date: Date;             // Loan start date
 
-  <!-- KEY CAPABILITIES -->
-  <section id="capabilities" style="background: var(--bg-alt);">
-    <div class="container">
-      <h2><i class="ph ph-rocket"></i>Key Capabilities & Features</h2>
-      <div class="cards">
-        <div class="card">
-          <h4><i class="ph ph-calculator"></i>PCAF Compliance Engine</h4>
-          <ul>
-            <li>Section 5.6 methodology</li>
-            <li>Attribution factors</li>
-            <li>Data quality scoring (1-5)</li>
-            <li>Multiple calculation options (1a-3b)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-chart-line"></i>Real-Time Analytics</h4>
-          <ul>
-            <li>Live portfolio aggregation</li>
-            <li>Scope 1/2/3 separation</li>
-            <li>Intensity ratios</li>
-            <li>Historical trends</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-stack"></i>Advanced Loan Management</h4>
-          <ul>
-            <li>Automated amortization</li>
-            <li>Lifecycle events</li>
-            <li>Bulk processing</li>
-            <li>LMS integration</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4><i class="ph ph-lock-key"></i>Enterprise Security</h4>
-          <ul>
-            <li>JWT + RBAC</li>
-            <li>TLS 1.3</li>
-            <li>Encryption at rest</li>
-            <li>Audit logging</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  // Vehicle Information
+  vehicle_details: {
+    make: string;                     // Vehicle manufacturer
+    model: string;                    // Vehicle model
+    year: number;                     // Model year
+    type: VehicleType;                // Car, truck, etc.
+    fuel_type: FuelType;              // Gas, electric, etc.
+    value_at_origination: number;     // Vehicle value
+    efficiency_mpg?: number;          // Fuel efficiency
+    annual_mileage?: number;          // Yearly mileage
+  };
 
-  <!-- ROADMAP -->
-  <section id="roadmap">
-    <div class="container">
-      <h2><i class="ph ph-map-trifold"></i>Implementation Roadmap & Current Status</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Phase</th>
-            <th>Description</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1. Foundation</td>
-            <td>Core infrastructure & security</td>
-            <td><span style="color: var(--accent);">✅ Completed</span></td>
-          </tr>
-          <tr>
-            <td>2. PCAF Engine</td>
-            <td>Carbon calculation core</td>
-            <td><span style="color: var(--accent);">✅ Completed</span></td>
-          </tr>
-          <tr>
-            <td>3. Analytics</td>
-            <td>Portfolio BI & reporting</td>
-            <td><span style="color: var(--accent);">✅ Completed</span></td>
-          </tr>
-          <tr>
-            <td>4. Advanced Features</td>
-            <td>Lifecycle events & optimization</td>
-            <td>
-              <div class="progress"><div class="progress-bar"></div></div>
-              70 % – In Progress
-            </td>
-          </tr>
-          <tr>
-            <td>5. Production Ready</td>
-            <td>Monitoring, CI/CD, containers</td>
-            <td>Planned</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  // PCAF Emissions Data
+  emissions_data: {
+    annual_emissions_tco2e: number;   // Annual CO2 emissions
+    attribution_factor: number;       // Loan attribution (0-1)
+    financed_emissions_tco2e: number; // Attributed emissions
+    data_quality_score: number;       // PCAF quality (1-5)
+    pcaf_data_option: PCAFOption;     // PCAF methodology
+    calculation_method: string;       // Calculation approach
+    last_calculated: Date;            // Last update
+  };
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- ROI -->
-  <section id="roi" style="background: var(--bg-alt);">
-    <div class="container">
-      <h2><i class="ph ph-coins"></i>Business Impact & ROI</h2>
-      <div class="cards">
-        <div class="card">
-          <h4>Traditional Manual</h4>
-          <ul>
-            <li>40 h / month analyst</li>
-            <li>$80 / h loaded cost</li>
-            <li>$3,200 / month / portfolio</li>
-            <li>High error rate</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h4>PCAF Backend API</h4>
-          <ul>
-            <li>Automated processing</li>
-            <li>$500 / month operational</li>
-            <li>99.9 % accuracy</li>
-            <li>Full compliance</li>
-          </ul>
-        </div>
-      </div>
-      <p style="text-align:center; font-size:1.5rem; font-weight:600; color: var(--accent);">
-        ROI: 540 % cost savings + risk elimination
-      </p>
-    </div>
-  </section>
+                <div class="grid grid-3">
+                    <div class="card stats-card">
+                        <div class="stats-number">6</div>
+                        <div class="stats-label">Data Models</div>
+                        <div class="stats-description">Comprehensive schema design</div>
+                    </div>
+                    
+                    <div class="card stats-card">
+                        <div class="stats-number">15+</div>
+                        <div class="stats-label">Database Indexes</div>
+                        <div class="stats-description">Optimized query performance</div>
+                    </div>
+                    
+                    <div class="card stats-card">
+                        <div class="stats-number">3</div>
+                        <div class="stats-label">Validation Layers</div>
+                        <div class="stats-description">Schema, Business, Cross-field</div>
+                    </div>
+                </div>
+            </section>
 
-  <!-- TIMELINE -->
-  <section id="timeline">
-    <div class="container">
-      <h2><i class="ph ph-calendar-check"></i>Implementation Timeline</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h4>Phase 1 – Pilot Deployment (4-6 weeks)</h4>
-          <p>Deploy existing modules, integrate with LMS, process ≤ 10 k loans.</p>
-        </div>
-        <div class="timeline-item">
-          <h4>Phase 2 – Full Production (8-12 weeks)</h4>
-          <p>Add remaining options, lifecycle events, monitoring, scale to full volume.</p>
-        </div>
-        <div class="timeline-item">
-          <h4>Phase 3 – Optimization (ongoing)</h4>
-          <p>Performance tuning, custom features, additional integrations.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            <!-- PCAF Engine Section -->
+            <section id="pcaf" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">PCAF Calculation Engine</h2>
+                    <p class="section-subtitle">Complete implementation of PCAF Section 5.6 methodology</p>
+                </div>
+                
+                <div class="pcaf-overview">
+                    <div class="formula-card">
+                        <h3>Core PCAF Formula</h3>
+                        <div class="formula">
+                            <div class="formula-line">
+                                <span class="formula-text">Financed Emissions</span>
+                                <span class="formula-operator">=</span>
+                                <span class="formula-text">Annual Vehicle Emissions</span>
+                                <span class="formula-operator">×</span>
+                                <span class="formula-text">Attribution Factor</span>
+                            </div>
+                            <div class="formula-sub">
+                                <span>Where: Attribution Factor = Outstanding Balance ÷ Vehicle Value at Origination</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- CONTACT -->
-  <section id="demo" style="background: var(--accent-light);">
-    <div class="container" style="text-align:center;">
-      <h2><i class="ph ph-handshake"></i>Ready to Transform Your Carbon Accounting?</h2>
-      <p>
-        <strong>30-day risk-free pilot</strong> with your actual loan data.<br/>
-        Dedicated technical support. No long-term commitment.
-      </p>
-      <a class="btn" href="mailto:sales@pcaf-api.com?subject=Book a Demo">sales@pcaf-api.com</a>
-      <p style="margin-top:1.5rem;">
-        <a href="https://calendly.com/pcaf-demo">Schedule a 30-min live demo →</a>
-      </p>
-    </div>
-  </section>
+                <div class="pcaf-options">
+                    <h3>PCAF Calculation Options</h3>
+                    <div class="options-grid">
+                        <div class="option-card option-1a">
+                            <div class="option-header">
+                                <span class="option-badge">Option 1a</span>
+                                <span class="quality-score">Score: 5</span>
+                            </div>
+                            <h4>Actual Vehicle-Specific Emissions</h4>
+                            <p>Highest data quality - requires actual vehicle efficiency and mileage data</p>
+                            <ul>
+                                <li>✓ Actual annual mileage</li>
+                                <li>✓ Vehicle make & model</li>
+                                <li>✓ Specific efficiency data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card option-1b">
+                            <div class="option-header">
+                                <span class="option-badge">Option 1b</span>
+                                <span class="quality-score">Score: 4</span>
+                            </div>
+                            <h4>Vehicle Efficiency + Actual Distance</h4>
+                            <p>High data quality - efficiency rating with actual mileage</p>
+                            <ul>
+                                <li>✓ Actual annual mileage</li>
+                                <li>✓ Vehicle efficiency rating</li>
+                                <li>⚠ Statistical make/model data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card option-2">
+                            <div class="option-header">
+                                <span class="option-badge">Option 2a/2b</span>
+                                <span class="quality-score">Score: 3</span>
+                            </div>
+                            <h4>Estimated Vehicle-Specific</h4>
+                            <p>Medium data quality - statistical efficiency with actual/estimated mileage</p>
+                            <ul>
+                                <li>✓ Vehicle make & model</li>
+                                <li>⚠ Statistical efficiency</li>
+                                <li>⚠ Actual or statistical mileage</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card option-3">
+                            <div class="option-header">
+                                <span class="option-badge">Option 3a/3b</span>
+                                <span class="quality-score">Score: 1-2</span>
+                            </div>
+                            <h4>Vehicle-Unspecific Averages</h4>
+                            <p>Lower data quality - vehicle type averages for all parameters</p>
+                            <ul>
+                                <li>⚠ Vehicle type averages</li>
+                                <li>⚠ Statistical efficiency</li>
+                                <li>⚠ Statistical mileage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>
-        <strong>PCAF Backend API</strong><br/>
-        <a href="mailto:support@pcaf-api.com">support@pcaf-api.com</a> |
-        <a href="https://docs.pcaf-api.com">Documentation</a> |
-        <a href="https://github.com/pcaf-backend-api">GitHub</a>
-      </p>
-      <p style="font-size:.875rem; color: var(--text-muted);">
-        “Leading the future of sustainable finance through automated carbon accounting.”
-      </p>
-    </div>
-  </footer>
+            <!-- Services Section -->
+            <section id="services" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Service Layer Architecture</h2>
+                    <p class="section-subtitle">Business logic implementation with clean separation of concerns</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card primary-service">
+                        <div class="service-icon">🧮</div>
+                        <h3>PCAF Calculation Service</h3>
+                        <p>Core service implementing PCAF Section 5.6 methodology with all six calculation options</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Attribution Factor Calculation</span>
+                            <span class="feature-tag">Emission Factor Selection</span>
+                            <span class="feature-tag">Portfolio Aggregation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">✅</div>
+                        <h3>Data Quality Service</h3>
+                        <p>Multi-layer validation system with PCAF data quality assessment</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Schema Validation</span>
+                            <span class="feature-tag">Business Rules</span>
+                            <span class="feature-tag">Cross-field Checks</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">💰</div>
+                        <h3>Amortization Service</h3>
+                        <p>Complete loan lifecycle management with payment scheduling</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Schedule Generation</span>
+                            <span class="feature-tag">Balance Tracking</span>
+                            <span class="feature-tag">Lifecycle Events</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Portfolio Analytics</h3>
+                        <p>Advanced analytics and reporting for portfolio-level insights</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Emissions Aggregation</span>
+                            <span class="feature-tag">Trend Analysis</span>
+                            <span class="feature-tag">Compliance Reports</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔗</div>
+                        <h3>Integration Services</h3>
+                        <p>External system connectivity for data enrichment and synchronization</p>
+                        <div class="service-features">
+                            <span class="feature-tag">LMS Integration</span>
+                            <span class="feature-tag">Vehicle Data APIs</span>
+                            <span class="feature-tag">Emission Factors</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Bulk Processing</h3>
+                        <p>High-performance batch operations for large-scale data processing</p>
+                        <div class="service-features">
+                            <span class="feature-tag">Batch Import</span>
+                            <span class="feature-tag">Progress Tracking</span>
+                            <span class="feature-tag">Error Handling</span>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        <!-- API Routes Section -->
+            <section id="api" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">API Routes & Endpoints</h2>
+                    <p class="section-subtitle">RESTful API design with comprehensive functionality</p>
+                </div>
+                
+                <div class="api-groups">
+                    <div class="api-group">
+                        <h3>Loan Management</h3>
+                        <div class="endpoints">
+                            <div class="endpoint">
+                                <span class="method post">POST</span>
+                                <span class="path">/api/v1/loans/intake</span>
+                                <span class="description">Create single loan with PCAF calculations</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method post">POST</span>
+                                <span class="path">/api/v1/loans/bulk-intake</span>
+                                <span class="description">Bulk loan processing with progress tracking</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/loans/portfolio</span>
+                                <span class="description">Portfolio summary with aggregated metrics</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/loans/:loanId</span>
+                                <span class="description">Detailed loan information and calculations</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="api-group">
+                        <h3>Portfolio Analytics</h3>
+                        <div class="endpoints">
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/portfolio/summary</span>
+                                <span class="description">Comprehensive portfolio metrics</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/portfolio/historical</span>
+                                <span class="description">Time-series emissions data</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/portfolio/emissions-breakdown</span>
+                                <span class="description">Detailed emissions analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="api-group">
+                        <h3>Compliance Reporting</h3>
+                        <div class="endpoints">
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/reports/compliance</span>
+                                <span class="description">PCAF compliance reports</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method get">GET</span>
+                                <span class="path">/api/v1/reports/data-quality</span>
+                                <span class="description">Data quality assessment reports</span>
+                            </div>
+                            <div class="endpoint">
+                                <span class="method post">POST</span>
+                                <span class="path">/api/v1/reports/export</span>
+                                <span class="description">Export reports in multiple formats</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deployment Section -->
+            <section id="deployment" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Deployment & DevOps</h2>
+                    <p class="section-subtitle">Production-ready deployment with modern DevOps practices</p>
+                </div>
+                
+                <div class="deployment-overview">
+                    <div class="deployment-card">
+                        <div class="deployment-icon">🐳</div>
+                        <h3>Containerization</h3>
+                        <p>Docker-based deployment with multi-stage builds for optimized production images</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Docker Compose</span>
+                            <span class="tech-tag">Multi-stage Builds</span>
+                        </div>
+                    </div>
+                    
+                    <div class="deployment-card">
+                        <div class="deployment-icon">☸️</div>
+                        <h3>Kubernetes</h3>
+                        <p>Scalable orchestration with health checks, auto-scaling, and rolling deployments</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">K8s Deployments</span>
+                            <span class="tech-tag">Services</span>
+                            <span class="tech-tag">ConfigMaps</span>
+                        </div>
+                    </div>
+                    
+                    <div class="deployment-card">
+                        <div class="deployment-icon">🚀</div>
+                        <h3>CI/CD Pipeline</h3>
+                        <p>Automated testing, building, and deployment with GitHub Actions</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">Automated Testing</span>
+                            <span class="tech-tag">Security Scanning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="performance-metrics">
+                    <h3>Performance Characteristics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Uptime SLA</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">&lt;200ms</div>
+                            <div class="metric-label">API Response Time</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">10,000+</div>
+                            <div class="metric-label">Concurrent Loans</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1000</div>
+                            <div class="metric-label">Requests/min</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Highlights -->
+            <section class="section highlights-section">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Highlights</h2>
+                    <p class="section-subtitle">Key technical achievements and implementation details</p>
+                </div>
+                
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🎯</div>
+                        <h3>PCAF Compliance</h3>
+                        <ul>
+                            <li>Complete Section 5.6 methodology implementation</li>
+                            <li>All six calculation options (1a-3b)</li>
+                            <li>Data quality scoring system (1-5 scale)</li>
+                            <li>Weighted Average Data Quality Score (WDQS)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🔧</div>
+                        <h3>Architecture Benefits</h3>
+                        <ul>
+                            <li>Scalable layered architecture</li>
+                            <li>Comprehensive security implementation</li>
+                            <li>Modular service design</li>
+                            <li>Extensive logging and monitoring</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">📈</div>
+                        <h3>Performance Features</h3>
+                        <ul>
+                            <li>Redis caching for high-speed data access</li>
+                            <li>Optimized database indexes</li>
+                            <li>Horizontal scaling capabilities</li>
+                            <li>Efficient bulk processing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🛡️</div>
+                        <h3>Security & Compliance</h3>
+                        <ul>
+                            <li>JWT-based authentication</li>
+                            <li>Role-based access control (RBAC)</li>
+                            <li>Comprehensive audit logging</li>
+                            <li>Data encryption at rest and in transit</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>PCAF Backend API</h4>
+                    <p>Enterprise-grade carbon accounting solution for financial institutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Documentation</h4>
+                    <ul>
+                        <li><a href="#overview">System Overview</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#pcaf">PCAF Engine</a></li>
+                        <li><a href="#deployment">Deployment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Technical</h4>
+                    <ul>
+                        <li><a href="#models">Data Models</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#api">API Routes</a></li>
+                        <li><a href="#structure">Project Structure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PCAF Backend API. Technical Documentation v1.0.0</p>
+            </div>
+        </div>
+    </footer>div>   
+ <style>
+        /* Navigation Styles */
+        .nav-container {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 6rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .feature-card {
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .architecture-diagram h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .diagram-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .layer {
+            background: var(--bg-secondary);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .layer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: var(--primary-gradient);
+            border-radius: var(--border-radius);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .layer-title {
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        .layer-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+        }
+
+        /* Code Block Styles */
+        .code-block-container {
+            background: #1e1e1e;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .code-block-container pre {
+            margin: 0;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+
+        .code-block-container code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* Model Showcase */
+        .model-showcase {
+            margin: 3rem 0;
+        }
+
+        .model-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            border-left: 4px solid;
+            border-image: var(--primary-gradient) 1;
+        }
+
+        .model-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .model-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-card {
+            text-align: center;
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-description {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* PCAF Styles */
+        .pcaf-overview {
+            margin: 3rem 0;
+        }
+
+        .formula-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .formula-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: var(--accent-gradient);
+            border-radius: var(--border-radius);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .formula-card {
+            position: relative;
+        }
+
+        .formula-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .formula-line {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .formula-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .formula-operator {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+        }
+
+        .formula-sub {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* PCAF Options */
+        .pcaf-options {
+            margin: 4rem 0;
+        }
+
+        .pcaf-options h3 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .option-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border-left: 4px solid;
+        }
+
+        .option-1a {
+            border-left-color: #10b981;
+        }
+
+        .option-1b {
+            border-left-color: #3b82f6;
+        }
+
+        .option-2 {
+            border-left-color: #f59e0b;
+        }
+
+        .option-3 {
+            border-left-color: #ef4444;
+        }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .option-badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .quality-score {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .option-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .option-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .option-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .option-card li {
+            padding: 0.25rem 0;
+            font-size: 0.875rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .primary-service {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .primary-service .service-features .feature-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .feature-tag {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* API Styles */
+        .api-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .api-group {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .api-group h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid;
+            border-image: var(--primary-gradient) 1;
+            padding-bottom: 0.5rem;
+        }
+
+        .endpoints {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .endpoint {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .endpoint:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .method {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .method.get {
+            background: #10b981;
+        }
+
+        .method.post {
+            background: #3b82f6;
+        }
+
+        .method.put {
+            background: #f59e0b;
+        }
+
+        .method.delete {
+            background: #ef4444;
+        }
+
+        .path {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            color: var(--text-primary);
+            min-width: 200px;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Deployment Styles */
+        .deployment-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .deployment-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .deployment-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .deployment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .deployment-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .deployment-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .tech-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Performance Metrics */
+        .performance-metrics {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .performance-metrics h3 {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            border-top: 4px solid;
+            border-image: var(--accent-gradient) 1;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Highlights Section */
+        .highlights-section {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            box-shadow: var(--shadow-light);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .highlight-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-card li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .highlight-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--dark-gradient);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .formula-line {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .api-groups {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection Styles */
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Focus Styles */
+        *:focus {
+            outline: 2px solid rgba(102, 126, 234, 0.5);
+            outline-offset: 2px;
+        }
+    </style>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Smooth scroll to target
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Update active nav link on scroll
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const correspondingNavLink = document.querySelector(`a[href="#${id}"]`);
+                        
+                        if (correspondingNavLink) {
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            correspondingNavLink.classList.add('active');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
