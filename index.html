@@ -171,30 +171,160 @@
 
                 <div class="architecture-diagram">
                     <h3>System Architecture Flow</h3>
-                    <div class="diagram-container">
-                        <div class="layer">
-                            <div class="layer-title">Client Applications</div>
-                            <div class="layer-subtitle">Frontend, Mobile, External APIs</div>
+                    <div class="architecture-container">
+                        <div class="architecture-layer client-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🌐</div>
+                                <div class="layer-info"></div>
+                                    <div class="layer-title">Client Applications</div>
+                                    <div class="layer-subtitle">Multi-platform access points</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">React Frontend</div>
+                                <div class="component">Mobile Apps</div>
+                                <div class="component">External APIs</div>
+                                <div class="component">Third-party Integrations</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">REST</span>
+                                <span class="tech-badge">GraphQL</span>
+                                <span class="tech-badge">WebSocket</span>
+                            </div>
                         </div>
-                        <div class="arrow">↓</div>
-                        <div class="layer">
-                            <div class="layer-title">API Gateway Layer</div>
-                            <div class="layer-subtitle">Express.js Routes, Middleware, Validation</div>
+
+                        <div class="architecture-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">⬇</div>
+                            <div class="arrow-label">HTTPS/WSS</div>
                         </div>
-                        <div class="arrow">↓</div>
-                        <div class="layer">
-                            <div class="layer-title">Service Layer</div>
-                            <div class="layer-subtitle">Business Logic, PCAF Calculations, Data Processing</div>
+
+                        <div class="architecture-layer gateway-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🚪</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">API Gateway Layer</div>
+                                    <div class="layer-subtitle">Request processing & security</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">Express.js Router</div>
+                                <div class="component">Authentication</div>
+                                <div class="component">Rate Limiting</div>
+                                <div class="component">Input Validation</div>
+                                <div class="component">Request Logging</div>
+                                <div class="component">Error Handling</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">JWT</span>
+                                <span class="tech-badge">Helmet</span>
+                                <span class="tech-badge">Joi</span>
+                                <span class="tech-badge">Winston</span>
+                            </div>
                         </div>
-                        <div class="arrow">↓</div>
-                        <div class="layer">
-                            <div class="layer-title">Data Access Layer</div>
-                            <div class="layer-subtitle">Mongoose ODM, Database Operations</div>
+
+                        <div class="architecture-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">⬇</div>
+                            <div class="arrow-label">Validated Requests</div>
                         </div>
-                        <div class="arrow">↓</div>
-                        <div class="layer">
-                            <div class="layer-title">Database Layer</div>
-                            <div class="layer-subtitle">MongoDB Atlas</div>
+
+                        <div class="architecture-layer service-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">⚙️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Service Layer</div>
+                                    <div class="layer-subtitle">Business logic & calculations</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component highlight">PCAF Calculation Engine</div>
+                                <div class="component">Data Quality Service</div>
+                                <div class="component">Amortization Service</div>
+                                <div class="component">Portfolio Analytics</div>
+                                <div class="component">Integration Services</div>
+                                <div class="component">Bulk Processing</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">TypeScript</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">Redis</span>
+                            </div>
+                        </div>
+
+                        <div class="architecture-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">⬇</div>
+                            <div class="arrow-label">Data Operations</div>
+                        </div>
+
+                        <div class="architecture-layer data-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🗄️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Data Access Layer</div>
+                                    <div class="layer-subtitle">ORM & data management</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">Mongoose ODM</div>
+                                <div class="component">Schema Validation</div>
+                                <div class="component">Query Optimization</div>
+                                <div class="component">Connection Pooling</div>
+                                <div class="component">Transaction Management</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">Mongoose</span>
+                                <span class="tech-badge">Aggregation</span>
+                                <span class="tech-badge">Indexing</span>
+                            </div>
+                        </div>
+
+                        <div class="architecture-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">⬇</div>
+                            <div class="arrow-label">Database Queries</div>
+                        </div>
+
+                        <div class="architecture-layer database-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🏛️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Database Layer</div>
+                                    <div class="layer-subtitle">Persistent data storage</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">MongoDB Atlas</div>
+                                <div class="component">Redis Cache</div>
+                                <div class="component">Replica Sets</div>
+                                <div class="component">Sharding</div>
+                                <div class="component">Backup & Recovery</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Atlas</span>
+                            </div>
+                        </div>
+
+                        <!-- External Systems -->
+                        <div class="external-systems">
+                            <div class="external-system">
+                                <div class="system-icon">🏦</div>
+                                <div class="system-name">LMS Systems</div>
+                                <div class="system-desc">Loan data sync</div>
+                            </div>
+                            <div class="external-system">
+                                <div class="system-icon">🚗</div>
+                                <div class="system-name">Vehicle APIs</div>
+                                <div class="system-desc">Specification data</div>
+                            </div>
+                            <div class="external-system">
+                                <div class="system-icon">🌱</div>
+                                <div class="system-name">Emission DBs</div>
+                                <div class="system-desc">Factor updates</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -255,48 +385,287 @@
                 </div>
                 
                 <div class="model-showcase">
-                    <div class="model-card">
-                        <h3>LoanPortfolioItem Model</h3>
-                        <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
+                    <div class="models-overview">
+                        <div class="models-summary">
+                            <h3>Data Models Overview</h3>
+                            <p>Comprehensive data modeling for loan portfolio management with PCAF compliance</p>
+                            <button class="view-all-models-btn" onclick="toggleModelsView()"></button>
+                                <span class="btn-text">View All Models</span>
+                                <span class="btn-icon">📋</span>
+                            </button>
+                        </div>
                         
-                        <div class="code-block-container">
-                            <pre><code class="language-typescript">interface LoanPortfolioItem extends Document {
-  // Loan Information
-  loan_id: string;                    // Unique identifier
-  borrower_name: string;              // Borrower information
-  loan_amount: number;                // Original loan amount
-  outstanding_balance: number;        // Current balance
-  interest_rate: number;              // Annual interest rate
-  term_months: number;                // Loan term
-  origination_date: Date;             // Loan start date
-
-  // Vehicle Information
-  vehicle_details: {
-    make: string;                     // Vehicle manufacturer
-    model: string;                    // Vehicle model
-    year: number;                     // Model year
-    type: VehicleType;                // Car, truck, etc.
-    fuel_type: FuelType;              // Gas, electric, etc.
-    value_at_origination: number;     // Vehicle value
-    efficiency_mpg?: number;          // Fuel efficiency
-    annual_mileage?: number;          // Yearly mileage
-  };
-
-  // PCAF Emissions Data
-  emissions_data: {
-    annual_emissions_tco2e: number;   // Annual CO2 emissions
-    attribution_factor: number;       // Loan attribution (0-1)
-    financed_emissions_tco2e: number; // Attributed emissions
-    data_quality_score: number;       // PCAF quality (1-5)
-    pcaf_data_option: PCAFOption;     // PCAF methodology
-    calculation_method: string;       // Calculation approach
-    last_calculated: Date;            // Last update
-  };
-}</code></pre>
+                        <div class="primary-model-preview">
+                            <div class="model-card primary-model">
+                                <div class="model-header"></div>
+                                    <div class="model-icon">🏦</div>
+                                    <div class="model-info">
+                                        <h4>LoanPortfolioItem</h4>
+                                        <span class="model-type">Primary Model</span>
+                                    </div>
+                                </div>
+                                <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
+                                <div class="model-stats">
+                                    <div class="stat">
+                                        <span class="stat-number">25+</span>
+                                        <span class="stat-label">Fields</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-number">8</span>
+                                        <span class="stat-label">Indexes</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-number">3</span>
+                                        <span class="stat-label">Subdocuments</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Expandable Models View -->
+                    <div id="all-models-view" class="all-models-view" style="display: none;">
+                        <div class="models-grid">
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">🏦</div>
+                                    <div class="model-info">
+                                        <h4>LoanPortfolioItem</h4>
+                                        <span class="model-type primary">Primary Model</span>
+                                    </div>
+                                </div>
+                                <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>Loan Information</h5>
+                                        <div class="fields">
+                                            <span class="field">loan_id: string</span>
+                                            <span class="field">borrower_name: string</span>
+                                            <span class="field">loan_amount: number</span>
+                                            <span class="field">outstanding_balance: number</span>
+                                            <span class="field">interest_rate: number</span>
+                                            <span class="field">term_months: number</span>
+                                            <span class="field">origination_date: Date</span>
+                                        </div>
+                                </div>
+                                    <div class="field-group">
+                                        <h5>Vehicle Details</h5>
+                                        <div class="fields">
+                                            <span class="field">make: string</span>
+                                            <span class="field">model: string</span>
+                                            <span class="field">year: number</span>
+                                            <span class="field">type: VehicleType</span>
+                                            <span class="field">fuel_type: FuelType</span>
+                                            <span class="field">value_at_origination: number</span>
+                                            <span class="field">efficiency_mpg?: number</span>
+                                            <span class="field">annual_mileage?: number</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>PCAF Emissions Data</h5>
+                                        <div class="fields">
+                                            <span class="field">annual_emissions_tco2e: number</span>
+                                            <span class="field">attribution_factor: number</span>
+                                            <span class="field">financed_emissions_tco2e: number</span>
+                                            <span class="field">data_quality_score: number</span>
+                                            <span class="field">pcaf_data_option: PCAFOption</span>
+                                            <span class="field">calculation_method: string</span>
+                                            <span class="field">last_calculated: Date</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">📅</div>
+                                    <div class="model-info">
+                                        <h4>AmortizationSchedule</h4>
+                                        <span class="model-type secondary">Payment Model</span>
+                                    </div>
+                                </div>
+                                <p>Payment schedule tracking with principal/interest breakdown and lifecycle management</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>Schedule Information</h5>
+                                        <div class="fields">
+                                            <span class="field">loan_id: string</span>
+                                            <span class="field">payment_number: number</span>
+                                            <span class="field">payment_date: Date</span>
+                                            <span class="field">payment_amount: number</span>
+                                            <span class="field">principal_payment: number</span>
+                                            <span class="field">interest_payment: number</span>
+                                            <span class="field">remaining_balance: number</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>Status Tracking</h5>
+                                        <div class="fields">
+                                            <span class="field">payment_status: PaymentStatus</span>
+                                            <span class="field">actual_payment_date?: Date</span>
+                                            <span class="field">actual_payment_amount?: number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">📊</div>
+                                    <div class="model-info">
+                                        <h4>AttributionHistory</h4>
+                                        <span class="model-type secondary">Tracking Model</span>
+                                    </div>
+                                </div>
+                                <p>Historical tracking of attribution factors and emissions calculations for audit trails</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>Historical Data</h5>
+                                        <div class="fields">
+                                            <span class="field">loan_id: string</span>
+                                            <span class="field">reporting_date: Date</span>
+                                            <span class="field">outstanding_balance: number</span>
+                                            <span class="field">attribution_factor: number</span>
+                                            <span class="field">annual_emissions_tco2e: number</span>
+                                            <span class="field">financed_emissions_tco2e: number</span>
+                                            <span class="field">data_quality_score: number</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>Calculation Context</h5>
+                                        <div class="fields">
+                                            <span class="field">pcaf_option: PCAFOption</span>
+                                            <span class="field">calculation_method: string</span>
+                                            <span class="field">emission_factors_used: EmissionFactor[]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">🌱</div>
+                                    <div class="model-info">
+                                        <h4>EmissionFactor</h4>
+                                        <span class="model-type reference">Reference Model</span>
+                                    </div>
+                                </div>
+                                <p>Emission factors database with regional and vehicle-specific data for accurate calculations</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>Factor Information</h5>
+                                        <div class="fields">
+                                            <span class="field">factor_id: string</span>
+                                            <span class="field">vehicle_type: VehicleType</span>
+                                            <span class="field">fuel_type: FuelType</span>
+                                            <span class="field">region_code: string</span>
+                                            <span class="field">emission_factor_kg_co2e_per_mile: number</span>
+                                            <span class="field">default_efficiency_mpg: number</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>Metadata</h5>
+                                        <div class="fields">
+                                            <span class="field">data_source: DataSource</span>
+                                            <span class="field">effective_date: Date</span>
+                                            <span class="field">expiry_date?: Date</span>
+                                            <span class="field">version: string</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">👤</div>
+                                    <div class="model-info">
+                                        <h4>User</h4>
+                                        <span class="model-type auth">Authentication Model</span>
+                                    </div>
+                                </div>
+                                <p>User management with role-based access control and authentication tracking</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>User Information</h5>
+                                        <div class="fields">
+                                            <span class="field">user_id: string</span>
+                                            <span class="field">email: string</span>
+                                            <span class="field">name: string</span>
+                                            <span class="field">role: UserRole</span>
+                                            <span class="field">permissions: Permission[]</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>Security</h5>
+                                        <div class="fields">
+                                            <span class="field">password_hash: string</span>
+                                            <span class="field">last_login: Date</span>
+                                            <span class="field">failed_login_attempts: number</span>
+                                            <span class="field">account_locked: boolean</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="model-card detailed-model">
+                                <div class="model-header">
+                                    <div class="model-icon">🔄</div>
+                                    <div class="model-info">
+                                        <h4>LifecycleEvent</h4>
+                                        <span class="model-type event">Event Model</span>
+                                    </div>
+                                </div>
+                                <p>Loan lifecycle events tracking including payoffs, refinancing, and defaults</p>
+                                <div class="model-fields">
+                                    <div class="field-group">
+                                        <h5>Event Information</h5>
+                                        <div class="fields">
+                                            <span class="field">event_id: string</span>
+                                            <span class="field">loan_id: string</span>
+                                            <span class="field">event_type: EventType</span>
+                                            <span class="field">event_date: Date</span>
+                                            <span class="field">description: string</span>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <h5>Impact Data</h5>
+                                        <div class="fields">
+                                            <span class="field">impact_on_balance: number</span>
+                                            <span class="field">new_attribution_factor?: number</span>
+                                            <span class="field">metadata: Record&lt;string, any&gt;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="models-relationships">
+                            <h4>Model Relationships</h4>
+                            <div class="relationship-diagram">
+                                <div class="relationship">
+                                    <span class="model-name">LoanPortfolioItem</span>
+                                    <span class="relationship-type">1:N</span>
+                                    <span class="model-name">AmortizationSchedule</span>
+                                </div>
+                                <div class="relationship">
+                                    <span class="model-name">LoanPortfolioItem</span>
+                                    <span class="relationship-type">1:N</span>
+                                    <span class="model-name">AttributionHistory</span>
+                                </div>
+                                <div class="relationship">
+                                    <span class="model-name">LoanPortfolioItem</span>
+                                    <span class="relationship-type">1:N</span>
+                                    <span class="model-name">LifecycleEvent</span>
+                                </div>
+                                <div class="relationship">
+                                    <span class="model-name">EmissionFactor</span>
+                                    <span class="relationship-type">N:N</span>
+                                    <span class="model-name">LoanPortfolioItem</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>""
                 <div class="grid grid-3">
                     <div class="card stats-card">
                         <div class="stats-number">6</div>
@@ -831,60 +1200,198 @@
             line-height: 1.6;
         }
 
-        /* Architecture Diagram */
+        /* Enhanced Architecture Diagram */
         .architecture-diagram {
             margin-top: 4rem;
             text-align: center;
         }
 
         .architecture-diagram h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.75rem;
+            margin-bottom: 3rem;
             color: var(--text-primary);
         }
 
-        .diagram-container {
-            max-width: 600px;
+        .architecture-container {
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        .layer {
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
             position: relative;
         }
 
-        .layer::before {
+        .architecture-layer {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .architecture-layer::before {
             content: '';
             position: absolute;
-            inset: 0;
-            padding: 2px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
             background: var(--primary-gradient);
-            border-radius: var(--border-radius);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
+        }
+
+        .architecture-layer:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .client-layer::before { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gateway-layer::before { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .service-layer::before { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .data-layer::before { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .database-layer::before { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .layer-info {
+            text-align: left;
+            flex: 1;
         }
 
         .layer-title {
-            font-weight: 600;
-            font-size: 1.125rem;
+            font-weight: 700;
+            font-size: 1.5rem;
             color: var(--text-primary);
+            margin-bottom: 0.25rem;
         }
 
         .layer-subtitle {
             color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
-        .arrow {
+        .layer-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .component {
+            background: var(--bg-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .component:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .component.highlight {
+            background: var(--primary-gradient);
+            color: white;
+            font-weight: 600;
+        }
+
+        .layer-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .tech-badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .architecture-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .arrow-line {
+            width: 2px;
+            height: 30px;
+            background: var(--primary-gradient);
+            border-radius: 1px;
+        }
+
+        .arrow-head {
             font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-top: -5px;
+        }
+
+        .arrow-label {
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            margin: 0.5rem 0;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            background: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+        }
+
+        .external-systems {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+        }
+
+        .external-system {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .system-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .system-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .system-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
         }
 
         /* Code Block Styles */
@@ -908,9 +1415,63 @@
             line-height: 1.6;
         }
 
-        /* Model Showcase */
+        /* Enhanced Model Showcase */
         .model-showcase {
             margin: 3rem 0;
+        }
+
+        .models-overview {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .models-summary {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .models-summary h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .models-summary p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .view-all-models-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .view-all-models-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .primary-model-preview {
+            display: flex;
+            align-items: center;
         }
 
         .model-card {
@@ -918,20 +1479,199 @@
             border-radius: var(--border-radius);
             padding: 2rem;
             box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .model-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .primary-model {
+            border-left: 4px solid;
+            border-image: var(--accent-gradient) 1;
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .model-info h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .model-type {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .model-type.primary { background: var(--primary-gradient); }
+        .model-type.secondary { background: var(--secondary-gradient); }
+        .model-type.reference { background: var(--accent-gradient); }
+        .model-type.auth { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .model-type.event { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+
+        .model-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .model-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* All Models View */
+        .all-models-view {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            margin-top: 3rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .detailed-model {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .model-fields {
+            margin-top: 1.5rem;
+        }
+
+        .field-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .field-group h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+            border-image: var(--primary-gradient) 1;
+        }
+
+        .fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .field {
+            background: var(--bg-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Model Relationships */
+        .models-relationships {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .models-relationships h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .relationship-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .relationship {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
             border-left: 4px solid;
             border-image: var(--primary-gradient) 1;
         }
 
-        .model-card h3 {
-            font-size: 1.5rem;
+        .model-name {
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 600;
-            margin-bottom: 1rem;
             color: var(--text-primary);
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
         }
 
-        .model-card p {
+        .relationship-type {
+            font-weight: 700;
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
         }
 
         /* Stats Cards */
@@ -1515,6 +2255,32 @@
     </style>
 
     <script>
+        // Toggle Models View
+        function toggleModelsView() {
+            const allModelsView = document.getElementById('all-models-view');
+            const btn = document.querySelector('.view-all-models-btn');
+            const btnText = btn.querySelector('.btn-text');
+            const btnIcon = btn.querySelector('.btn-icon');
+            
+            if (allModelsView.style.display === 'none' || allModelsView.style.display === '') {
+                allModelsView.style.display = 'block';
+                btnText.textContent = 'Hide Models';
+                btnIcon.textContent = '🔼';
+                
+                // Smooth scroll to the expanded view
+                setTimeout(() => {
+                    allModelsView.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            } else {
+                allModelsView.style.display = 'none';
+                btnText.textContent = 'View All Models';
+                btnIcon.textContent = '📋';
+            }
+        }
+
         // Smooth scrolling for navigation links
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -1562,6 +2328,29 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // Add hover effects to architecture layers
+            const architectureLayers = document.querySelectorAll('.architecture-layer');
+            architectureLayers.forEach(layer => {
+                layer.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                layer.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click effects to components
+            const components = document.querySelectorAll('.component');
+            components.forEach(component => {
+                component.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
             });
         });
     </script>
