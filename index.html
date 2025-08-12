@@ -99,990 +99,8 @@
             border-radius: 50px;
             font-weight: 500;
             backdrop-filter: blur(10px);
-        }
-    </style>
-</head>
-<body>  
-  <!-- Header Section -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <h1>PCAF Backend API</h1>
-                <p class="subtitle">Technical Documentation & Architecture Guide</p>
-                <div class="version-badge">Version 1.0.0 • Enterprise Grade</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-links">
-                    <a href="#overview" class="nav-link active">Overview</a>
-                    <a href="#architecture" class="nav-link">Architecture</a>
-                    <a href="#structure" class="nav-link">Structure</a>
-                    <a href="#models" class="nav-link">Data Models</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#pcaf" class="nav-link">PCAF Engine</a>
-                    <a href="#api" class="nav-link">API Routes</a>
-                    <a href="#deployment" class="nav-link">Deployment</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            
-            <!-- System Overview Section -->
-            <section id="overview" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">System Architecture Overview</h2>
-                    <p class="section-subtitle">Enterprise-grade PCAF compliance system built with modern Node.js architecture</p>
-                </div>
-                
-                <div class="grid grid-2">
-                    <div class="card feature-card">
-                        <div class="card-icon">🏗️</div>
-                        <h3>Layered Architecture</h3>
-                        <p>Clean separation of concerns with API, Service, Data Access, and Database layers for maximum maintainability and scalability.</p>
-                    </div>
-                    
-                    <div class="card feature-card">
-                        <div class="card-icon">🔒</div>
-                        <h3>Security First</h3>
-                        <p>Multiple security layers including JWT authentication, rate limiting, input validation, and comprehensive audit logging.</p>
-                    </div>
-                    
-                    <div class="card feature-card">
-                        <div class="card-icon">📊</div>
-                        <h3>PCAF Compliant</h3>
-                        <p>Full implementation of PCAF Section 5.6 methodology with all six calculation options and data quality assessment.</p>
-                    </div>
-                    
-                    <div class="card feature-card">
-                        <div class="card-icon">⚡</div>
-                        <h3>High Performance</h3>
-                        <p>Optimized for scale with Redis caching, database indexing, and horizontal scaling capabilities.</p>
-                    </div>
-                </div>
-
-                <div class="architecture-diagram">
-                    <h3>System Architecture Flow</h3>
-                    <div class="architecture-container">
-                        <div class="architecture-layer client-layer">
-                            <div class="layer-header">
-                                <div class="layer-icon">🌐</div>
-                                <div class="layer-info"></div>
-                                    <div class="layer-title">Client Applications</div>
-                                    <div class="layer-subtitle">Multi-platform access points</div>
-                                </div>
-                            </div>
-                            <div class="layer-components">
-                                <div class="component">React Frontend</div>
-                                <div class="component">Mobile Apps</div>
-                                <div class="component">External APIs</div>
-                                <div class="component">Third-party Integrations</div>
-                            </div>
-                            <div class="layer-tech">
-                                <span class="tech-badge">REST</span>
-                                <span class="tech-badge">GraphQL</span>
-                                <span class="tech-badge">WebSocket</span>
-                            </div>
-                        </div>
-
-                        <div class="architecture-arrow">
-                            <div class="arrow-line"></div>
-                            <div class="arrow-head">⬇</div>
-                            <div class="arrow-label">HTTPS/WSS</div>
-                        </div>
-
-                        <div class="architecture-layer gateway-layer">
-                            <div class="layer-header">
-                                <div class="layer-icon">🚪</div>
-                                <div class="layer-info">
-                                    <div class="layer-title">API Gateway Layer</div>
-                                    <div class="layer-subtitle">Request processing & security</div>
-                                </div>
-                            </div>
-                            <div class="layer-components">
-                                <div class="component">Express.js Router</div>
-                                <div class="component">Authentication</div>
-                                <div class="component">Rate Limiting</div>
-                                <div class="component">Input Validation</div>
-                                <div class="component">Request Logging</div>
-                                <div class="component">Error Handling</div>
-                            </div>
-                            <div class="layer-tech">
-                                <span class="tech-badge">JWT</span>
-                                <span class="tech-badge">Helmet</span>
-                                <span class="tech-badge">Joi</span>
-                                <span class="tech-badge">Winston</span>
-                            </div>
-                        </div>
-
-                        <div class="architecture-arrow">
-                            <div class="arrow-line"></div>
-                            <div class="arrow-head">⬇</div>
-                            <div class="arrow-label">Validated Requests</div>
-                        </div>
-
-                        <div class="architecture-layer service-layer">
-                            <div class="layer-header">
-                                <div class="layer-icon">⚙️</div>
-                                <div class="layer-info">
-                                    <div class="layer-title">Service Layer</div>
-                                    <div class="layer-subtitle">Business logic & calculations</div>
-                                </div>
-                            </div>
-                            <div class="layer-components">
-                                <div class="component highlight">PCAF Calculation Engine</div>
-                                <div class="component">Data Quality Service</div>
-                                <div class="component">Amortization Service</div>
-                                <div class="component">Portfolio Analytics</div>
-                                <div class="component">Integration Services</div>
-                                <div class="component">Bulk Processing</div>
-                            </div>
-                            <div class="layer-tech">
-                                <span class="tech-badge">TypeScript</span>
-                                <span class="tech-badge">Node.js</span>
-                                <span class="tech-badge">Redis</span>
-                            </div>
-                        </div>
-
-                        <div class="architecture-arrow">
-                            <div class="arrow-line"></div>
-                            <div class="arrow-head">⬇</div>
-                            <div class="arrow-label">Data Operations</div>
-                        </div>
-
-                        <div class="architecture-layer data-layer">
-                            <div class="layer-header">
-                                <div class="layer-icon">🗄️</div>
-                                <div class="layer-info">
-                                    <div class="layer-title">Data Access Layer</div>
-                                    <div class="layer-subtitle">ORM & data management</div>
-                                </div>
-                            </div>
-                            <div class="layer-components">
-                                <div class="component">Mongoose ODM</div>
-                                <div class="component">Schema Validation</div>
-                                <div class="component">Query Optimization</div>
-                                <div class="component">Connection Pooling</div>
-                                <div class="component">Transaction Management</div>
-                            </div>
-                            <div class="layer-tech">
-                                <span class="tech-badge">Mongoose</span>
-                                <span class="tech-badge">Aggregation</span>
-                                <span class="tech-badge">Indexing</span>
-                            </div>
-                        </div>
-
-                        <div class="architecture-arrow">
-                            <div class="arrow-line"></div>
-                            <div class="arrow-head">⬇</div>
-                            <div class="arrow-label">Database Queries</div>
-                        </div>
-
-                        <div class="architecture-layer database-layer">
-                            <div class="layer-header">
-                                <div class="layer-icon">🏛️</div>
-                                <div class="layer-info">
-                                    <div class="layer-title">Database Layer</div>
-                                    <div class="layer-subtitle">Persistent data storage</div>
-                                </div>
-                            </div>
-                            <div class="layer-components">
-                                <div class="component">MongoDB Atlas</div>
-                                <div class="component">Redis Cache</div>
-                                <div class="component">Replica Sets</div>
-                                <div class="component">Sharding</div>
-                                <div class="component">Backup & Recovery</div>
-                            </div>
-                            <div class="layer-tech">
-                                <span class="tech-badge">MongoDB</span>
-                                <span class="tech-badge">Redis</span>
-                                <span class="tech-badge">Atlas</span>
-                            </div>
-                        </div>
-
-                        <!-- External Systems -->
-                        <div class="external-systems">
-                            <div class="external-system">
-                                <div class="system-icon">🏦</div>
-                                <div class="system-name">LMS Systems</div>
-                                <div class="system-desc">Loan data sync</div>
-                            </div>
-                            <div class="external-system">
-                                <div class="system-icon">🚗</div>
-                                <div class="system-name">Vehicle APIs</div>
-                                <div class="system-desc">Specification data</div>
-                            </div>
-                            <div class="external-system">
-                                <div class="system-icon">🌱</div>
-                                <div class="system-name">Emission DBs</div>
-                                <div class="system-desc">Factor updates</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Project Structure Section -->
-            <section id="structure" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Project Structure</h2>
-                    <p class="section-subtitle">Organized codebase following industry best practices</p>
-                </div>
-                
-                <div class="code-block-container">
-                    <pre><code class="language-bash">backend/
-├── src/
-│   ├── app.ts                 # Main application setup
-│   ├── server.ts              # Server startup and configuration
-│   ├── types.ts               # Global type definitions
-│   │
-│   ├── config/                # Configuration management
-│   │   ├── database.ts        # MongoDB connection setup
-│   │   ├── environment.ts     # Environment variables
-│   │   └── logger.ts          # Winston logging configuration
-│   │
-│   ├── middleware/            # Express middleware
-│   │   ├── auth.ts            # JWT authentication
-│   │   ├── errorHandler.ts    # Global error handling
-│   │   ├── rateLimiter.ts     # Rate limiting
-│   │   ├── requestLogger.ts   # Request/response logging
-│   │   ├── security.ts        # Security headers & validation
-│   │   └── validation.ts      # Input validation
-│   │
-│   ├── models/                # Mongoose data models
-│   │   ├── LoanPortfolioItem.ts    # Main loan data model
-│   │   ├── AmortizationSchedule.ts # Payment schedules
-│   │   ├── AttributionHistory.ts   # Historical tracking
-│   │   ├── EmissionFactor.ts       # Emission factors
-│   │   └── User.ts                 # User management
-│   │
-│   ├── routes/                # API route definitions
-│   │   ├── loans.ts           # Loan management endpoints
-│   │   ├── portfolio.ts       # Portfolio analytics
-│   │   ├── reports.ts         # Compliance reporting
-│   │   └── integrations.ts    # External system APIs
-│   │
-│   └── services/              # Business logic layer
-│       ├── pcafCalculationService.ts      # Core PCAF calculations
-│       ├── dataQualityService.ts          # Data validation & quality
-│       ├── amortizationService.ts         # Loan amortization
-│       └── portfolioAnalyticsService.ts   # Portfolio aggregation</code></pre>
-                </div>
-            </section></header>  
-          <!-- Data Models Section -->
-            <section id="models" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Data Models & Database Schema</h2>
-                    <p class="section-subtitle">Comprehensive data modeling for loan portfolio management</p>
-                </div>
-                
-                <div class="model-showcase">
-                    <div class="models-overview">
-                        <div class="models-summary">
-                            <h3>Data Models Overview</h3>
-                            <p>Comprehensive data modeling for loan portfolio management with PCAF compliance</p>
-                            <button class="view-all-models-btn" onclick="toggleModelsView()"></button>
-                                <span class="btn-text">View All Models</span>
-                                <span class="btn-icon">📋</span>
-                            </button>
-                        </div>
-                        
-                        <div class="primary-model-preview">
-                            <div class="model-card primary-model">
-                                <div class="model-header"></div>
-                                    <div class="model-icon">🏦</div>
-                                    <div class="model-info">
-                                        <h4>LoanPortfolioItem</h4>
-                                        <span class="model-type">Primary Model</span>
-                                    </div>
-                                </div>
-                                <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
-                                <div class="model-stats">
-                                    <div class="stat">
-                                        <span class="stat-number">25+</span>
-                                        <span class="stat-label">Fields</span>
-                                    </div>
-                                    <div class="stat">
-                                        <span class="stat-number">8</span>
-                                        <span class="stat-label">Indexes</span>
-                                    </div>
-                                    <div class="stat">
-                                        <span class="stat-number">3</span>
-                                        <span class="stat-label">Subdocuments</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expandable Models View -->
-                    <div id="all-models-view" class="all-models-view" style="display: none;">
-                        <div class="models-grid">
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">🏦</div>
-                                    <div class="model-info">
-                                        <h4>LoanPortfolioItem</h4>
-                                        <span class="model-type primary">Primary Model</span>
-                                    </div>
-                                </div>
-                                <p>Central data model containing all loan and vehicle information with PCAF emissions data</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>Loan Information</h5>
-                                        <div class="fields">
-                                            <span class="field">loan_id: string</span>
-                                            <span class="field">borrower_name: string</span>
-                                            <span class="field">loan_amount: number</span>
-                                            <span class="field">outstanding_balance: number</span>
-                                            <span class="field">interest_rate: number</span>
-                                            <span class="field">term_months: number</span>
-                                            <span class="field">origination_date: Date</span>
-                                        </div>
-                                </div>
-                                    <div class="field-group">
-                                        <h5>Vehicle Details</h5>
-                                        <div class="fields">
-                                            <span class="field">make: string</span>
-                                            <span class="field">model: string</span>
-                                            <span class="field">year: number</span>
-                                            <span class="field">type: VehicleType</span>
-                                            <span class="field">fuel_type: FuelType</span>
-                                            <span class="field">value_at_origination: number</span>
-                                            <span class="field">efficiency_mpg?: number</span>
-                                            <span class="field">annual_mileage?: number</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>PCAF Emissions Data</h5>
-                                        <div class="fields">
-                                            <span class="field">annual_emissions_tco2e: number</span>
-                                            <span class="field">attribution_factor: number</span>
-                                            <span class="field">financed_emissions_tco2e: number</span>
-                                            <span class="field">data_quality_score: number</span>
-                                            <span class="field">pcaf_data_option: PCAFOption</span>
-                                            <span class="field">calculation_method: string</span>
-                                            <span class="field">last_calculated: Date</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">📅</div>
-                                    <div class="model-info">
-                                        <h4>AmortizationSchedule</h4>
-                                        <span class="model-type secondary">Payment Model</span>
-                                    </div>
-                                </div>
-                                <p>Payment schedule tracking with principal/interest breakdown and lifecycle management</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>Schedule Information</h5>
-                                        <div class="fields">
-                                            <span class="field">loan_id: string</span>
-                                            <span class="field">payment_number: number</span>
-                                            <span class="field">payment_date: Date</span>
-                                            <span class="field">payment_amount: number</span>
-                                            <span class="field">principal_payment: number</span>
-                                            <span class="field">interest_payment: number</span>
-                                            <span class="field">remaining_balance: number</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>Status Tracking</h5>
-                                        <div class="fields">
-                                            <span class="field">payment_status: PaymentStatus</span>
-                                            <span class="field">actual_payment_date?: Date</span>
-                                            <span class="field">actual_payment_amount?: number</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">📊</div>
-                                    <div class="model-info">
-                                        <h4>AttributionHistory</h4>
-                                        <span class="model-type secondary">Tracking Model</span>
-                                    </div>
-                                </div>
-                                <p>Historical tracking of attribution factors and emissions calculations for audit trails</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>Historical Data</h5>
-                                        <div class="fields">
-                                            <span class="field">loan_id: string</span>
-                                            <span class="field">reporting_date: Date</span>
-                                            <span class="field">outstanding_balance: number</span>
-                                            <span class="field">attribution_factor: number</span>
-                                            <span class="field">annual_emissions_tco2e: number</span>
-                                            <span class="field">financed_emissions_tco2e: number</span>
-                                            <span class="field">data_quality_score: number</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>Calculation Context</h5>
-                                        <div class="fields">
-                                            <span class="field">pcaf_option: PCAFOption</span>
-                                            <span class="field">calculation_method: string</span>
-                                            <span class="field">emission_factors_used: EmissionFactor[]</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">🌱</div>
-                                    <div class="model-info">
-                                        <h4>EmissionFactor</h4>
-                                        <span class="model-type reference">Reference Model</span>
-                                    </div>
-                                </div>
-                                <p>Emission factors database with regional and vehicle-specific data for accurate calculations</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>Factor Information</h5>
-                                        <div class="fields">
-                                            <span class="field">factor_id: string</span>
-                                            <span class="field">vehicle_type: VehicleType</span>
-                                            <span class="field">fuel_type: FuelType</span>
-                                            <span class="field">region_code: string</span>
-                                            <span class="field">emission_factor_kg_co2e_per_mile: number</span>
-                                            <span class="field">default_efficiency_mpg: number</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>Metadata</h5>
-                                        <div class="fields">
-                                            <span class="field">data_source: DataSource</span>
-                                            <span class="field">effective_date: Date</span>
-                                            <span class="field">expiry_date?: Date</span>
-                                            <span class="field">version: string</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">👤</div>
-                                    <div class="model-info">
-                                        <h4>User</h4>
-                                        <span class="model-type auth">Authentication Model</span>
-                                    </div>
-                                </div>
-                                <p>User management with role-based access control and authentication tracking</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>User Information</h5>
-                                        <div class="fields">
-                                            <span class="field">user_id: string</span>
-                                            <span class="field">email: string</span>
-                                            <span class="field">name: string</span>
-                                            <span class="field">role: UserRole</span>
-                                            <span class="field">permissions: Permission[]</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>Security</h5>
-                                        <div class="fields">
-                                            <span class="field">password_hash: string</span>
-                                            <span class="field">last_login: Date</span>
-                                            <span class="field">failed_login_attempts: number</span>
-                                            <span class="field">account_locked: boolean</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="model-card detailed-model">
-                                <div class="model-header">
-                                    <div class="model-icon">🔄</div>
-                                    <div class="model-info">
-                                        <h4>LifecycleEvent</h4>
-                                        <span class="model-type event">Event Model</span>
-                                    </div>
-                                </div>
-                                <p>Loan lifecycle events tracking including payoffs, refinancing, and defaults</p>
-                                <div class="model-fields">
-                                    <div class="field-group">
-                                        <h5>Event Information</h5>
-                                        <div class="fields">
-                                            <span class="field">event_id: string</span>
-                                            <span class="field">loan_id: string</span>
-                                            <span class="field">event_type: EventType</span>
-                                            <span class="field">event_date: Date</span>
-                                            <span class="field">description: string</span>
-                                        </div>
-                                    </div>
-                                    <div class="field-group">
-                                        <h5>Impact Data</h5>
-                                        <div class="fields">
-                                            <span class="field">impact_on_balance: number</span>
-                                            <span class="field">new_attribution_factor?: number</span>
-                                            <span class="field">metadata: Record&lt;string, any&gt;</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="models-relationships">
-                            <h4>Model Relationships</h4>
-                            <div class="relationship-diagram">
-                                <div class="relationship">
-                                    <span class="model-name">LoanPortfolioItem</span>
-                                    <span class="relationship-type">1:N</span>
-                                    <span class="model-name">AmortizationSchedule</span>
-                                </div>
-                                <div class="relationship">
-                                    <span class="model-name">LoanPortfolioItem</span>
-                                    <span class="relationship-type">1:N</span>
-                                    <span class="model-name">AttributionHistory</span>
-                                </div>
-                                <div class="relationship">
-                                    <span class="model-name">LoanPortfolioItem</span>
-                                    <span class="relationship-type">1:N</span>
-                                    <span class="model-name">LifecycleEvent</span>
-                                </div>
-                                <div class="relationship">
-                                    <span class="model-name">EmissionFactor</span>
-                                    <span class="relationship-type">N:N</span>
-                                    <span class="model-name">LoanPortfolioItem</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div></div>""
-                <div class="grid grid-3">
-                    <div class="card stats-card">
-                        <div class="stats-number">6</div>
-                        <div class="stats-label">Data Models</div>
-                        <div class="stats-description">Comprehensive schema design</div>
-                    </div>
-                    
-                    <div class="card stats-card">
-                        <div class="stats-number">15+</div>
-                        <div class="stats-label">Database Indexes</div>
-                        <div class="stats-description">Optimized query performance</div>
-                    </div>
-                    
-                    <div class="card stats-card">
-                        <div class="stats-number">3</div>
-                        <div class="stats-label">Validation Layers</div>
-                        <div class="stats-description">Schema, Business, Cross-field</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PCAF Engine Section -->
-            <section id="pcaf" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">PCAF Calculation Engine</h2>
-                    <p class="section-subtitle">Complete implementation of PCAF Section 5.6 methodology</p>
-                </div>
-                
-                <div class="pcaf-overview">
-                    <div class="formula-card">
-                        <h3>Core PCAF Formula</h3>
-                        <div class="formula">
-                            <div class="formula-line">
-                                <span class="formula-text">Financed Emissions</span>
-                                <span class="formula-operator">=</span>
-                                <span class="formula-text">Annual Vehicle Emissions</span>
-                                <span class="formula-operator">×</span>
-                                <span class="formula-text">Attribution Factor</span>
-                            </div>
-                            <div class="formula-sub">
-                                <span>Where: Attribution Factor = Outstanding Balance ÷ Vehicle Value at Origination</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pcaf-options">
-                    <h3>PCAF Calculation Options</h3>
-                    <div class="options-grid">
-                        <div class="option-card option-1a">
-                            <div class="option-header">
-                                <span class="option-badge">Option 1a</span>
-                                <span class="quality-score">Score: 5</span>
-                            </div>
-                            <h4>Actual Vehicle-Specific Emissions</h4>
-                            <p>Highest data quality - requires actual vehicle efficiency and mileage data</p>
-                            <ul>
-                                <li>✓ Actual annual mileage</li>
-                                <li>✓ Vehicle make & model</li>
-                                <li>✓ Specific efficiency data</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="option-card option-1b">
-                            <div class="option-header">
-                                <span class="option-badge">Option 1b</span>
-                                <span class="quality-score">Score: 4</span>
-                            </div>
-                            <h4>Vehicle Efficiency + Actual Distance</h4>
-                            <p>High data quality - efficiency rating with actual mileage</p>
-                            <ul>
-                                <li>✓ Actual annual mileage</li>
-                                <li>✓ Vehicle efficiency rating</li>
-                                <li>⚠ Statistical make/model data</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="option-card option-2">
-                            <div class="option-header">
-                                <span class="option-badge">Option 2a/2b</span>
-                                <span class="quality-score">Score: 3</span>
-                            </div>
-                            <h4>Estimated Vehicle-Specific</h4>
-                            <p>Medium data quality - statistical efficiency with actual/estimated mileage</p>
-                            <ul>
-                                <li>✓ Vehicle make & model</li>
-                                <li>⚠ Statistical efficiency</li>
-                                <li>⚠ Actual or statistical mileage</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="option-card option-3">
-                            <div class="option-header">
-                                <span class="option-badge">Option 3a/3b</span>
-                                <span class="quality-score">Score: 1-2</span>
-                            </div>
-                            <h4>Vehicle-Unspecific Averages</h4>
-                            <p>Lower data quality - vehicle type averages for all parameters</p>
-                            <ul>
-                                <li>⚠ Vehicle type averages</li>
-                                <li>⚠ Statistical efficiency</li>
-                                <li>⚠ Statistical mileage</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Services Section -->
-            <section id="services" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Service Layer Architecture</h2>
-                    <p class="section-subtitle">Business logic implementation with clean separation of concerns</p>
-                </div>
-                
-                <div class="services-grid">
-                    <div class="service-card primary-service">
-                        <div class="service-icon">🧮</div>
-                        <h3>PCAF Calculation Service</h3>
-                        <p>Core service implementing PCAF Section 5.6 methodology with all six calculation options</p>
-                        <div class="service-features">
-                            <span class="feature-tag">Attribution Factor Calculation</span>
-                            <span class="feature-tag">Emission Factor Selection</span>
-                            <span class="feature-tag">Portfolio Aggregation</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">✅</div>
-                        <h3>Data Quality Service</h3>
-                        <p>Multi-layer validation system with PCAF data quality assessment</p>
-                        <div class="service-features">
-                            <span class="feature-tag">Schema Validation</span>
-                            <span class="feature-tag">Business Rules</span>
-                            <span class="feature-tag">Cross-field Checks</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">💰</div>
-                        <h3>Amortization Service</h3>
-                        <p>Complete loan lifecycle management with payment scheduling</p>
-                        <div class="service-features">
-                            <span class="feature-tag">Schedule Generation</span>
-                            <span class="feature-tag">Balance Tracking</span>
-                            <span class="feature-tag">Lifecycle Events</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">📊</div>
-                        <h3>Portfolio Analytics</h3>
-                        <p>Advanced analytics and reporting for portfolio-level insights</p>
-                        <div class="service-features">
-                            <span class="feature-tag">Emissions Aggregation</span>
-                            <span class="feature-tag">Trend Analysis</span>
-                            <span class="feature-tag">Compliance Reports</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">🔗</div>
-                        <h3>Integration Services</h3>
-                        <p>External system connectivity for data enrichment and synchronization</p>
-                        <div class="service-features">
-                            <span class="feature-tag">LMS Integration</span>
-                            <span class="feature-tag">Vehicle Data APIs</span>
-                            <span class="feature-tag">Emission Factors</span>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">⚡</div>
-                        <h3>Bulk Processing</h3>
-                        <p>High-performance batch operations for large-scale data processing</p>
-                        <div class="service-features">
-                            <span class="feature-tag">Batch Import</span>
-                            <span class="feature-tag">Progress Tracking</span>
-                            <span class="feature-tag">Error Handling</span>
-                        </div>
-                    </div>
-                </div>
-            </section>    
-        <!-- API Routes Section -->
-            <section id="api" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">API Routes & Endpoints</h2>
-                    <p class="section-subtitle">RESTful API design with comprehensive functionality</p>
-                </div>
-                
-                <div class="api-groups">
-                    <div class="api-group">
-                        <h3>Loan Management</h3>
-                        <div class="endpoints">
-                            <div class="endpoint">
-                                <span class="method post">POST</span>
-                                <span class="path">/api/v1/loans/intake</span>
-                                <span class="description">Create single loan with PCAF calculations</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method post">POST</span>
-                                <span class="path">/api/v1/loans/bulk-intake</span>
-                                <span class="description">Bulk loan processing with progress tracking</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/loans/portfolio</span>
-                                <span class="description">Portfolio summary with aggregated metrics</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/loans/:loanId</span>
-                                <span class="description">Detailed loan information and calculations</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="api-group">
-                        <h3>Portfolio Analytics</h3>
-                        <div class="endpoints">
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/portfolio/summary</span>
-                                <span class="description">Comprehensive portfolio metrics</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/portfolio/historical</span>
-                                <span class="description">Time-series emissions data</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/portfolio/emissions-breakdown</span>
-                                <span class="description">Detailed emissions analysis</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="api-group">
-                        <h3>Compliance Reporting</h3>
-                        <div class="endpoints">
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/reports/compliance</span>
-                                <span class="description">PCAF compliance reports</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method get">GET</span>
-                                <span class="path">/api/v1/reports/data-quality</span>
-                                <span class="description">Data quality assessment reports</span>
-                            </div>
-                            <div class="endpoint">
-                                <span class="method post">POST</span>
-                                <span class="path">/api/v1/reports/export</span>
-                                <span class="description">Export reports in multiple formats</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Deployment Section -->
-            <section id="deployment" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Deployment & DevOps</h2>
-                    <p class="section-subtitle">Production-ready deployment with modern DevOps practices</p>
-                </div>
-                
-                <div class="deployment-overview">
-                    <div class="deployment-card">
-                        <div class="deployment-icon">🐳</div>
-                        <h3>Containerization</h3>
-                        <p>Docker-based deployment with multi-stage builds for optimized production images</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Docker Compose</span>
-                            <span class="tech-tag">Multi-stage Builds</span>
-                        </div>
-                    </div>
-                    
-                    <div class="deployment-card">
-                        <div class="deployment-icon">☸️</div>
-                        <h3>Kubernetes</h3>
-                        <p>Scalable orchestration with health checks, auto-scaling, and rolling deployments</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">K8s Deployments</span>
-                            <span class="tech-tag">Services</span>
-                            <span class="tech-tag">ConfigMaps</span>
-                        </div>
-                    </div>
-                    
-                    <div class="deployment-card">
-                        <div class="deployment-icon">🚀</div>
-                        <h3>CI/CD Pipeline</h3>
-                        <p>Automated testing, building, and deployment with GitHub Actions</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">GitHub Actions</span>
-                            <span class="tech-tag">Automated Testing</span>
-                            <span class="tech-tag">Security Scanning</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="performance-metrics">
-                    <h3>Performance Characteristics</h3>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-value">99.9%</div>
-                            <div class="metric-label">Uptime SLA</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-value">&lt;200ms</div>
-                            <div class="metric-label">API Response Time</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-value">10,000+</div>
-                            <div class="metric-label">Concurrent Loans</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-value">1000</div>
-                            <div class="metric-label">Requests/min</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Technical Highlights -->
-            <section class="section highlights-section">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Highlights</h2>
-                    <p class="section-subtitle">Key technical achievements and implementation details</p>
-                </div>
-                
-                <div class="highlights-grid">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🎯</div>
-                        <h3>PCAF Compliance</h3>
-                        <ul>
-                            <li>Complete Section 5.6 methodology implementation</li>
-                            <li>All six calculation options (1a-3b)</li>
-                            <li>Data quality scoring system (1-5 scale)</li>
-                            <li>Weighted Average Data Quality Score (WDQS)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🔧</div>
-                        <h3>Architecture Benefits</h3>
-                        <ul>
-                            <li>Scalable layered architecture</li>
-                            <li>Comprehensive security implementation</li>
-                            <li>Modular service design</li>
-                            <li>Extensive logging and monitoring</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="highlight-card">
-                        <div class="highlight-icon">📈</div>
-                        <h3>Performance Features</h3>
-                        <ul>
-                            <li>Redis caching for high-speed data access</li>
-                            <li>Optimized database indexes</li>
-                            <li>Horizontal scaling capabilities</li>
-                            <li>Efficient bulk processing</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🛡️</div>
-                        <h3>Security & Compliance</h3>
-                        <ul>
-                            <li>JWT-based authentication</li>
-                            <li>Role-based access control (RBAC)</li>
-                            <li>Comprehensive audit logging</li>
-                            <li>Data encryption at rest and in transit</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>PCAF Backend API</h4>
-                    <p>Enterprise-grade carbon accounting solution for financial institutions</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Documentation</h4>
-                    <ul>
-                        <li><a href="#overview">System Overview</a></li>
-                        <li><a href="#architecture">Architecture</a></li>
-                        <li><a href="#pcaf">PCAF Engine</a></li>
-                        <li><a href="#deployment">Deployment</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Technical</h4>
-                    <ul>
-                        <li><a href="#models">Data Models</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#api">API Routes</a></li>
-                        <li><a href="#structure">Project Structure</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 PCAF Backend API. Technical Documentation v1.0.0</p>
-            </div>
-        </div>
-    </footer>div>   
- <style>
-        /* Navigation Styles */
+        } 
+       /* Navigation Styles */
         .nav-container {
             background: var(--bg-secondary);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -1114,9 +132,8 @@
 
         .nav-link:hover,
         .nav-link.active {
-            color: var(--text-primary);
-            background: var(--primary-gradient);
             color: white;
+            background: var(--primary-gradient);
         }
 
         /* Main Content Styles */
@@ -1222,7 +239,7 @@
             background: var(--bg-secondary);
             border-radius: var(--border-radius);
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             box-shadow: var(--shadow-medium);
             transition: var(--transition);
             position: relative;
@@ -1236,7 +253,6 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--primary-gradient);
         }
 
         .architecture-layer:hover {
@@ -1332,35 +348,76 @@
             font-weight: 600;
         }
 
+        /* Enhanced Architecture Arrows */
         .architecture-arrow {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 1rem 0;
+            margin: 2rem 0;
             position: relative;
+            z-index: 10;
+        }
+
+        .arrow-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .arrow-line {
-            width: 2px;
-            height: 30px;
-            background: var(--primary-gradient);
-            border-radius: 1px;
+            width: 3px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--primary-gradient));
+            border-radius: 2px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .arrow-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: moveDown 2s infinite;
         }
 
         .arrow-head {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-top: -5px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #667eea;
+            margin-top: -2px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .arrow-label {
             font-size: 0.75rem;
             color: var(--text-secondary);
-            font-weight: 500;
-            margin-top: 0.5rem;
-            background: var(--bg-primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes moveDown {
+            0% { top: 10%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 90%; opacity: 0; }
         }
 
         .external-systems {
@@ -1376,6 +433,11 @@
         .external-system {
             text-align: center;
             padding: 1rem;
+            transition: var(--transition);
+        }
+
+        .external-system:hover {
+            transform: translateY(-4px);
         }
 
         .system-icon {
@@ -1415,792 +477,6 @@
             line-height: 1.6;
         }
 
-        /* Enhanced Model Showcase */
-        .model-showcase {
-            margin: 3rem 0;
-        }
-
-        .models-overview {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .models-summary {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-        }
-
-        .models-summary h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .models-summary p {
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .view-all-models-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0 auto;
-            backdrop-filter: blur(10px);
-        }
-
-        .view-all-models-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .primary-model-preview {
-            display: flex;
-            align-items: center;
-        }
-
-        .model-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .model-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .primary-model {
-            border-left: 4px solid;
-            border-image: var(--accent-gradient) 1;
-        }
-
-        .model-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .model-icon {
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--glass-bg);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .model-info h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .model-type {
-            font-size: 0.75rem;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            color: white;
-        }
-
-        .model-type.primary { background: var(--primary-gradient); }
-        .model-type.secondary { background: var(--secondary-gradient); }
-        .model-type.reference { background: var(--accent-gradient); }
-        .model-type.auth { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .model-type.event { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
-
-        .model-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .model-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1.5rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* All Models View */
-        .all-models-view {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            margin-top: 3rem;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .models-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .detailed-model {
-            background: var(--bg-secondary);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .model-fields {
-            margin-top: 1.5rem;
-        }
-
-        .field-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .field-group h5 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid;
-            border-image: var(--primary-gradient) 1;
-        }
-
-        .fields {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .field {
-            background: var(--bg-primary);
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-primary);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        /* Model Relationships */
-        .models-relationships {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-        }
-
-        .models-relationships h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .relationship-diagram {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .relationship {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            border-left: 4px solid;
-            border-image: var(--primary-gradient) 1;
-        }
-
-        .model-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            color: var(--text-primary);
-            background: rgba(102, 126, 234, 0.1);
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-        }
-
-        .relationship-type {
-            font-weight: 700;
-            color: var(--text-secondary);
-            background: var(--primary-gradient);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-        }
-
-        /* Stats Cards */
-        .stats-card {
-            text-align: center;
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .stats-number {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .stats-label {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .stats-description {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        /* PCAF Styles */
-        .pcaf-overview {
-            margin: 3rem 0;
-        }
-
-        .formula-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            text-align: center;
-            box-shadow: var(--shadow-light);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-        }
-
-        .formula-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 2px;
-            background: var(--accent-gradient);
-            border-radius: var(--border-radius);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-        }
-
-        .formula-card {
-            position: relative;
-        }
-
-        .formula-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-
-        .formula {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .formula-line {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .formula-text {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .formula-operator {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-        }
-
-        .formula-sub {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* PCAF Options */
-        .pcaf-options {
-            margin: 4rem 0;
-        }
-
-        .pcaf-options h3 {
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-primary);
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .option-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            border-left: 4px solid;
-        }
-
-        .option-1a {
-            border-left-color: #10b981;
-        }
-
-        .option-1b {
-            border-left-color: #3b82f6;
-        }
-
-        .option-2 {
-            border-left-color: #f59e0b;
-        }
-
-        .option-3 {
-            border-left-color: #ef4444;
-        }
-
-        .option-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .option-badge {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .quality-score {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .option-card h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .option-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.875rem;
-        }
-
-        .option-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .option-card li {
-            padding: 0.25rem 0;
-            font-size: 0.875rem;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .primary-service {
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .primary-service .service-features .feature-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .service-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .feature-tag {
-            background: var(--bg-primary);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* API Styles */
-        .api-groups {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-        }
-
-        .api-group {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-        }
-
-        .api-group h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-            border-bottom: 2px solid;
-            border-image: var(--primary-gradient) 1;
-            padding-bottom: 0.5rem;
-        }
-
-        .endpoints {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .endpoint {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .endpoint:hover {
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .method {
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-            min-width: 60px;
-            text-align: center;
-        }
-
-        .method.get {
-            background: #10b981;
-        }
-
-        .method.post {
-            background: #3b82f6;
-        }
-
-        .method.put {
-            background: #f59e0b;
-        }
-
-        .method.delete {
-            background: #ef4444;
-        }
-
-        .path {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-            color: var(--text-primary);
-            min-width: 200px;
-        }
-
-        .description {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        /* Deployment Styles */
-        .deployment-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .deployment-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .deployment-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .deployment-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .deployment-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .deployment-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .tech-tag {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Performance Metrics */
-        .performance-metrics {
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .performance-metrics h3 {
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .metric-card {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            text-align: center;
-            border-top: 4px solid;
-            border-image: var(--accent-gradient) 1;
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Highlights Section */
-        .highlights-section {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-            box-shadow: var(--shadow-light);
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .highlight-card {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-        }
-
-        .highlight-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .highlight-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .highlight-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .highlight-card li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .highlight-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background: var(--dark-gradient);
-            color: var(--text-light);
-            padding: 4rem 0 2rem;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 {
@@ -2219,21 +495,13 @@
                 gap: 1rem;
             }
 
-            .formula-line {
+            .layer-components {
+                grid-template-columns: 1fr;
+            }
+
+            .external-systems {
                 flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .api-groups {
-                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
 
@@ -2253,34 +521,306 @@
             outline-offset: 2px;
         }
     </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>PCAF Backend API</h1>
+                <p class="subtitle">Technical Documentation & Architecture Guide</p>
+                <div class="version-badge">Version 1.0.0 • Enterprise Grade</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-links">
+                    <a href="#overview" class="nav-link active">Overview</a>
+                    <a href="#architecture" class="nav-link">Architecture</a>
+                    <a href="#structure" class="nav-link">Structure</a>
+                    <a href="#models" class="nav-link">Data Models</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#pcaf" class="nav-link">PCAF Engine</a>
+                    <a href="#api" class="nav-link">API Routes</a>
+                    <a href="#deployment" class="nav-link">Deployment</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- System Overview Section -->
+            <section id="overview" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">System Architecture Overview</h2>
+                    <p class="section-subtitle">Enterprise-grade PCAF compliance system built with modern Node.js architecture</p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div class="card feature-card">
+                        <div class="card-icon">🏗️</div>
+                        <h3>Layered Architecture</h3>
+                        <p>Clean separation of concerns with API, Service, Data Access, and Database layers for maximum maintainability and scalability.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">🔒</div>
+                        <h3>Security First</h3>
+                        <p>Multiple security layers including JWT authentication, rate limiting, input validation, and comprehensive audit logging.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">📊</div>
+                        <h3>PCAF Compliant</h3>
+                        <p>Full implementation of PCAF Section 5.6 methodology with all six calculation options and data quality assessment.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>High Performance</h3>
+                        <p>Optimized for scale with Redis caching, database indexing, and horizontal scaling capabilities.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-diagram">
+                    <h3>System Architecture Flow</h3>
+                    <div class="architecture-container">
+                        
+                        <!-- Client Layer -->
+                        <div class="architecture-layer client-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🌐</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Client Applications</div>
+                                    <div class="layer-subtitle">Multi-platform access points</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">React Frontend</div>
+                                <div class="component">Mobile Apps</div>
+                                <div class="component">External APIs</div>
+                                <div class="component">Third-party Integrations</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">REST</span>
+                                <span class="tech-badge">GraphQL</span>
+                                <span class="tech-badge">WebSocket</span>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 1 -->
+                        <div class="architecture-arrow">
+                            <div class="arrow-container">
+                                <div class="arrow-line"></div>
+                                <div class="arrow-head"></div>
+                                <div class="arrow-label">HTTPS/WSS</div>
+                            </div>
+                        </div>
+
+                        <!-- Gateway Layer -->
+                        <div class="architecture-layer gateway-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🚪</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">API Gateway Layer</div>
+                                    <div class="layer-subtitle">Request processing & security</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">Express.js Router</div>
+                                <div class="component">Authentication</div>
+                                <div class="component">Rate Limiting</div>
+                                <div class="component">Input Validation</div>
+                                <div class="component">Request Logging</div>
+                                <div class="component">Error Handling</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">JWT</span>
+                                <span class="tech-badge">Helmet</span>
+                                <span class="tech-badge">Joi</span>
+                                <span class="tech-badge">Winston</span>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 2 -->
+                        <div class="architecture-arrow">
+                            <div class="arrow-container">
+                                <div class="arrow-line"></div>
+                                <div class="arrow-head"></div>
+                                <div class="arrow-label">Validated Requests</div>
+                            </div>
+                        </div>
+
+                        <!-- Service Layer -->
+                        <div class="architecture-layer service-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">⚙️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Service Layer</div>
+                                    <div class="layer-subtitle">Business logic & calculations</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component highlight">PCAF Calculation Engine</div>
+                                <div class="component">Data Quality Service</div>
+                                <div class="component">Amortization Service</div>
+                                <div class="component">Portfolio Analytics</div>
+                                <div class="component">Integration Services</div>
+                                <div class="component">Bulk Processing</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">TypeScript</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">Redis</span>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 3 -->
+                        <div class="architecture-arrow">
+                            <div class="arrow-container">
+                                <div class="arrow-line"></div>
+                                <div class="arrow-head"></div>
+                                <div class="arrow-label">Data Operations</div>
+                            </div>
+                        </div>
+
+                        <!-- Data Access Layer -->
+                        <div class="architecture-layer data-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🗄️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Data Access Layer</div>
+                                    <div class="layer-subtitle">ORM & data management</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">Mongoose ODM</div>
+                                <div class="component">Schema Validation</div>
+                                <div class="component">Query Optimization</div>
+                                <div class="component">Connection Pooling</div>
+                                <div class="component">Transaction Management</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">Mongoose</span>
+                                <span class="tech-badge">Aggregation</span>
+                                <span class="tech-badge">Indexing</span>
+                            </div>
+                        </div>
+
+                        <!-- Arrow 4 -->
+                        <div class="architecture-arrow">
+                            <div class="arrow-container">
+                                <div class="arrow-line"></div>
+                                <div class="arrow-head"></div>
+                                <div class="arrow-label">Database Queries</div>
+                            </div>
+                        </div>
+
+                        <!-- Database Layer -->
+                        <div class="architecture-layer database-layer">
+                            <div class="layer-header">
+                                <div class="layer-icon">🏛️</div>
+                                <div class="layer-info">
+                                    <div class="layer-title">Database Layer</div>
+                                    <div class="layer-subtitle">Persistent data storage</div>
+                                </div>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">MongoDB Atlas</div>
+                                <div class="component">Redis Cache</div>
+                                <div class="component">Replica Sets</div>
+                                <div class="component">Sharding</div>
+                                <div class="component">Backup & Recovery</div>
+                            </div>
+                            <div class="layer-tech">
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Atlas</span>
+                            </div>
+                        </div>
+
+                        <!-- External Systems -->
+                        <div class="external-systems">
+                            <div class="external-system">
+                                <div class="system-icon">🏦</div>
+                                <div class="system-name">LMS Systems</div>
+                                <div class="system-desc">Loan data sync</div>
+                            </div>
+                            <div class="external-system">
+                                <div class="system-icon">🚗</div>
+                                <div class="system-name">Vehicle APIs</div>
+                                <div class="system-desc">Specification data</div>
+                            </div>
+                            <div class="external-system">
+                                <div class="system-icon">🌱</div>
+                                <div class="system-name">Emission DBs</div>
+                                <div class="system-desc">Factor updates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Structure Section -->
+            <section id="structure" class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Project Structure</h2>
+                    <p class="section-subtitle">Organized codebase following industry best practices</p>
+                </div>
+                
+                <div class="code-block-container">
+                    <pre><code class="language-bash">backend/
+├── src/
+│   ├── app.ts                 # Main application setup
+│   ├── server.ts              # Server startup and configuration
+│   ├── types.ts               # Global type definitions
+│   │
+│   ├── config/                # Configuration management
+│   │   ├── database.ts        # MongoDB connection setup
+│   │   ├── environment.ts     # Environment variables
+│   │   └── logger.ts          # Winston logging configuration
+│   │
+│   ├── middleware/            # Express middleware
+│   │   ├── auth.ts            # JWT authentication
+│   │   ├── errorHandler.ts    # Global error handling
+│   │   ├── rateLimiter.ts     # Rate limiting
+│   │   ├── requestLogger.ts   # Request/response logging
+│   │   ├── security.ts        # Security headers & validation
+│   │   └── validation.ts      # Input validation
+│   │
+│   ├── models/                # Mongoose data models
+│   │   ├── LoanPortfolioItem.ts    # Main loan data model
+│   │   ├── AmortizationSchedule.ts # Payment schedules
+│   │   ├── AttributionHistory.ts   # Historical tracking
+│   │   ├── EmissionFactor.ts       # Emission factors
+│   │   └── User.ts                 # User management
+│   │
+│   ├── routes/                # API route definitions
+│   │   ├── loans.ts           # Loan management endpoints
+│   │   ├── portfolio.ts       # Portfolio analytics
+│   │   ├── reports.ts         # Compliance reporting
+│   │   └── integrations.ts    # External system APIs
+│   │
+│   └── services/              # Business logic layer
+│       ├── pcafCalculationService.ts      # Core PCAF calculations
+│       ├── dataQualityService.ts          # Data validation & quality
+│       ├── amortizationService.ts         # Loan amortization
+│       └── portfolioAnalyticsService.ts   # Portfolio aggregation</code></pre>
+                </div>
+            </section>
+
+        </div>
+    </main>
 
     <script>
-        // Toggle Models View
-        function toggleModelsView() {
-            const allModelsView = document.getElementById('all-models-view');
-            const btn = document.querySelector('.view-all-models-btn');
-            const btnText = btn.querySelector('.btn-text');
-            const btnIcon = btn.querySelector('.btn-icon');
-            
-            if (allModelsView.style.display === 'none' || allModelsView.style.display === '') {
-                allModelsView.style.display = 'block';
-                btnText.textContent = 'Hide Models';
-                btnIcon.textContent = '🔼';
-                
-                // Smooth scroll to the expanded view
-                setTimeout(() => {
-                    allModelsView.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 100);
-            } else {
-                allModelsView.style.display = 'none';
-                btnText.textContent = 'View All Models';
-                btnIcon.textContent = '📋';
-            }
-        }
-
         // Smooth scrolling for navigation links
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
